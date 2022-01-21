@@ -1,0 +1,14 @@
+<div class="container-fluid p-0 m-0">
+    <div class="row p-0 m-0">
+      <div class="col-12 p-0 m-0 fixed-top" *ngIf="view">
+        <app-header></app-header>
+      </div>
+      <div class="col-12 p-0 m-0">
+        <router-outlet></router-outlet>
+      </div>
+      <div class="col-12 p-0 m-0 fixed-bottom" *ngIf="view">
+        <app-footer></app-footer>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,45 @@
+.container-fluid{
+    margin-top: 130px !important;
+}
+hr{
+    margin-left: 25%;
+    width: 50%;
+    height: 4px;
+    background: linear-gradient(150deg, #DD2F6E,#dfa3b9,rgb(151, 103, 228), #00d0ff,rgb(150, 231, 134), #fffd87,#FC8454) !important; 
+}
+.contenue{
+    justify-content: center;
+    display: flex;
+}
+button{
+    width: 250px;
+    height: 250px;
+    box-shadow: 10px 5px 5px rgb(187, 178, 178);
+    margin-right: 50px;
+}
+button:hover{
+    width: 270px;
+    height: 270px;
+}
+
+button:nth-child(1){
+    border: 2px solid #DD2F6E;
+}
+button:nth-child(2){
+    border: 2px solid #dfa3b9;
+}
+button:nth-child(3){
+    border: 2px solid rgb(151, 103, 228);
+}
+button:nth-child(4){
+    border: 2px solid #00d0ff;
+}
+button:nth-child(5){
+    border: 2px solid rgb(150, 231, 134);
+}
+button:nth-child(6){
+    border: 2px solid #fffd87;
+}
+button:nth-child(7){
+    border: 2px solid #FC8454;
+}

@@ -1,0 +1,16 @@
+<div class="container-fluid">
+   <div class="gradient">
+   <h1 class="text-center">Agence</h1>
+   <h3 class="text-center">Bienvenue Nom d'utilisateur</h3>
+   <hr>
+   </div>
+   <div class="contenue">
+      <button *ngIf="admin">Interface Administrateur</button>
+      <button *ngIf="admin || gerant">Réaliser un Audit</button>
+      <button *ngIf="admin || gerant" [routerLink]="['/conseillers']">Gestion des conseillers</button>
+      <button *ngIf="admin || gerant" [routerLink]="['/gestion-conseillers']">Gestion relations entre conseillers/clients</button> 
+      <button *ngIf="conseiller">Mon interface</button>  
+      <button>Gestion des clients</button>
+      <button>Réaliser un Virement</button>
+   </div>
+</div>

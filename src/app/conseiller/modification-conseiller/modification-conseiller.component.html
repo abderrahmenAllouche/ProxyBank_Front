@@ -1,0 +1,70 @@
+<div class="container col-8">
+    <div class="contenue"> 
+        <h1 class="text-center">{{conseiller.nom}}</h1>
+
+        <form [formGroup]="conseillerModifier" (ngSubmit)="modifierConseiller(conseiller.id)" >
+            <div class="form-group">
+                <label class="form-label">Changer le nom : </label>
+                <input class="form-control" formControlName="nom" type="text"/>
+                <button class="rose btn btn-outline-secondary">Modifier</button>
+            </div> 
+        </form>
+
+        <hr>
+
+        <h2>{{conseiller.clients.length}} clients à charge :</h2>
+        <table class="table table-striped">
+            <thead class="thead">
+                <tr>
+                    <td>Nom</td>
+                    <td>Prenom</td>
+                    <td>Adresse</td>
+                    <td>Téléphone</td>
+                    <td>Carte bancaire</td>
+                    <td>Compte Epagne</td>
+                    <td>M</td>
+                    <td>S</td>
+                    <td>C</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="trColor">
+                    <td >HONOREZ</td>
+                    <td >Laura</td>
+                    <td >36 rue des fraises</td>
+                    <td >06 07 45 20 25</td>
+                    <td >Visa / Electron</td>
+                    <td >Oui / Non</td>
+                    <td><button class="bleu btn btn-outline-secondary">Modifier</button></td>
+                    <td><button class="btn btn-outline-danger" [routerLink]="['/gestion-conseillers']">Changer le conseiller</button></td>
+                    <td><button class="btn btn-outline-danger">Supprimer </button></td>
+                </tr>  
+                <tr class="trColor">
+                    <td >HONOREZ</td>
+                    <td >Laura</td>
+                    <td >36 rue des fraises</td>
+                    <td >06 07 45 20 25</td>
+                    <td >Visa / Electron</td>
+                    <td >Oui / Non</td>
+                    <td><button class="bleu btn btn-outline-secondary">Modifier</button></td>
+                    <td><button class="indigo btn btn-outline-danger" [routerLink]="['/gestion-conseillers']">Changer le conseiller</button></td>
+                    <td><button class="rouge btn-outline-danger">Supprimer </button></td>
+                </tr> 
+                <tr class="trColor">
+                    <td >HONOREZ</td>
+                    <td >Laura</td>
+                    <td >36 rue des fraises</td>
+                    <td >06 07 45 20 25</td>
+                    <td >Visa / Electron</td>
+                    <td >Oui / Non</td>
+                    <td><button class="bleu btn btn-outline-secondary">Modifier</button></td>
+                    <td><button class="btn btn-outline-danger" [routerLink]="['/gestion-conseillers']">Changer le conseiller</button></td>
+                    <td><button class="btn btn-outline-danger">Supprimer </button></td>
+                </tr>   
+            </tbody>
+        </table>
+
+
+        <button [routerLink]="['/conseillers']">Retour</button>
+    </div>
+</div>
