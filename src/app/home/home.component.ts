@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../shared/service/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -9,12 +10,12 @@ export class HomeComponent implements OnInit {
   admin: boolean;
   gerant: boolean;
   conseiller: boolean;
+
   constructor() { 
     this.admin=true;
     this.gerant=false;
     this.conseiller=false;
   }
-
   ngOnInit(): void {
   }
 
