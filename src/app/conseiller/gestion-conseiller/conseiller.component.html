@@ -1,6 +1,8 @@
 <div class="container col-8">
       
 <h2>Tout mes conseillers : <button type="button" class="btn btn-outline-success" (click)="ajouter()">Nouveau</button></h2>
+<div *ngIf="conseillers.length==0"><h1>Désolé, vous n'avez aucun conseiller</h1></div>
+
 <table class="table table-striped">
     <thead>
         <tr class="thead">
@@ -25,14 +27,6 @@
                 <button type="button" class="rose btn btn-outline-secondary" (click)=redirection(conseiller.id)>Gerer</button>
             </td>
             <td><button type="button"class="btn btn-outline-danger" (click)="supprimerConseiller(conseiller.id)">Supprimer </button></td>
-        </tr> 
-        <tr  class="trColor" >
-            <td scope="row">Nom du conseiller</td>
-            <td >Nombres de clients à sa charge</td>
-            <td>
-                <button class="rose btn btn-outline-secondary" >Gerer</button>
-            </td>
-            <td><button class="btn btn-outline-danger" >Supprimer </button></td>
         </tr>   
     </tbody>
 </table>
