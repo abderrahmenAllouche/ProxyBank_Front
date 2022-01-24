@@ -1,0 +1,42 @@
+.contenue{
+    margin-top: 150px;
+}
+table{
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 1.2rem;
+}
+tr{
+    border-top: rgb(191, 158, 245);
+    border-bottom: rgb(0, 0, 0);   
+}
+.thead{
+    background: linear-gradient(150deg, #00d0ff,#57cac4);
+    border-top: rgb(0, 0, 0);
+    color: #fff
+}
+.trColor{
+    background: #f1eded;
+}
+.rose{
+    margin-top: 10px;
+    border: 1px solid #DD2F6E;
+    color: #DD2F6E
+}
+.rose:hover{
+    background: #DD2F6E;
+    border: 1px solid #DD2F6E;
+    color: #FFF
+}
+.bleu{
+    margin-top: 10px;
+    border: 1px solid #00d0ff;
+    color: #00d0ff
+}
+.bleu:hover{
+    background: #00d0ff;
+    border: 1px solid #00d0ff;
+    color: #FFF
+}
+h1{
+    color: #DD2F6E;
+}

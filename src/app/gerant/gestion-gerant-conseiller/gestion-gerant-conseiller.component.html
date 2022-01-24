@@ -1,0 +1,47 @@
+<div class="container col-8">
+    <div class="contenue"> 
+        <h1>Relations Gerants/Conseillers :</h1>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr  class="thead">
+                <td>Conseiller</td>
+                <td>Gerant Actuel</td>
+                <td>Gerants Disponible</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor='let gerant of gerants' class="trColor">
+                <td >Conseiller nom</td>
+                <td >Gerant nom {{gerant.nom}}</td>
+                <td >
+                    <div class="btn-group" role="group">
+                        <button id="btnGroupDrop1" type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                          Dropdown
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                          <li><a class="dropdown-item" href="#">Dropdown link</a></li>
+                          <li><a class="dropdown-item" href="#">Dropdown link</a></li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>  
+            <tr class="trColor" >
+                <td >test</td>
+                <td >test</td>
+                <td >
+                    <div class="btn-group" role="group">
+                        <button id="btnGroupDrop1" type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                          Dropdown
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                          <li><a class="dropdown-item" href="#">Dropdown link</a></li>
+                          <li><a class="dropdown-item" href="#">Dropdown link</a></li>
+                        </ul>
+                    </div>
+                </td>
+            </tr> 
+        </tbody>
+    </table>
+    </div>
+    

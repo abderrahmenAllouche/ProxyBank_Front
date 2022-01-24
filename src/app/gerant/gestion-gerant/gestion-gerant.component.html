@@ -1,0 +1,46 @@
+<h1>Creer un gerant</h1>
+<form [formGroup]="gerant" (ngSubmit)="creerGerant()" >
+    <div class="form-group">
+        <label>Nom : </label>
+        <input formControlName="nom" type="text"/>
+        <label>Agence_id : </label>
+        <input formControlName="agence_id" type="number"/>
+        <button  >Creer</button>
+    </div> 
+</form>
+
+
+<h1>La liste de tous les gerants :</h1>
+<table >
+    <thead>
+        <tr>
+            <td >Id</td>
+            <td >Nom</td>
+            <td>Conseillers</td>
+            <td>Agence_id</td>
+            <td>Supprimer un gerant</td>
+            <td>Modifier un gerant</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor='let gerant of gerants'>
+            <td>{{gerant.id}}</td>
+            <td >{{gerant.nom}}</td>
+            <td >
+                <ul>
+                    <li *ngFor='let conseiller of gerant.conseillers'>conseiller.id - conseiller.nom de : {{gerant.conseillers}} </li>
+                </ul>
+            </td>
+            <td>{{gerant.agence_id}}</td>
+            <td><button (click)="supprimerGerant(gerant.id)">Supprimer </button></td>
+            <td><form [formGroup]="gerantModifier" (ngSubmit)="modifierGerant(gerant.id)" >
+                    <div class="form-group">
+                        <label>Nom : </label>
+                        <input formControlName="nom" type="text"/>
+                        <button >Modifier</button>
+                    </div> 
+                </form>
+            </td>
+        </tr>   
+    </tbody>
+</table>

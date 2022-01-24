@@ -6,7 +6,7 @@
    </div>
    <div class="contenue">
       <button *ngIf="admin">Interface Administrateur</button>
-      <button *ngIf="admin || gerant">Réaliser un Audit</button>
+      <button *ngIf="admin || gerant" (click)=redirectionAudit(9) type="button">Réaliser un Audit</button>
       <button *ngIf="admin || gerant" [routerLink]="['/conseillers']">Gestion des conseillers</button>
       <button *ngIf="admin || gerant" [routerLink]="['/gestion-conseillers']">Gestion relations entre conseillers/clients</button> 
       <button *ngIf="conseiller">Mon interface</button>  

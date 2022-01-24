@@ -1,0 +1,45 @@
+<h1>Creer un agence</h1>
+<form [formGroup]="agence" (ngSubmit)="creerAgence()" >
+    <div class="form-group">
+        <label>Nom : </label>
+        <input formControlName="nom" type="text"/>
+        <button [disabled]="agence.invalid" >Creer</button>
+         </div> 
+</form>
+
+
+
+<h1>La liste de toutes les agences:</h1>
+<table >
+    <thead>
+        <tr>
+            <td >Id</td>
+            <td >Nom</td>
+            <td>Gerant</td>
+            <td>Supprimer une agence</td>
+            <td>Modifier une agence</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor='let agence of agences'>
+            <td >{{agence.id}}</td>
+            <td >{{agence.nom}}</td>
+            <td>{{agence.gerant}}</td>
+            
+            
+            <td><button (click)="supprimerAgence(agence.id)">Supprimer </button></td>
+            <td><form [formGroup]="agenceModifier" (ngSubmit)="modifierAgence(agence.id)" >
+                    <div class="form-group">
+                        <label>Nom : </label>
+                        <input formControlName="nom" type="text"/>
+                        <button>Modifier</button>
+                    </div> 
+                </form>
+            </td>
+           
+        </tr>    
+         
+            
+           
+    </tbody>
+</table>

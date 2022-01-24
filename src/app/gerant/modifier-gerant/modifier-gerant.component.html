@@ -1,0 +1,11 @@
+<div class="container col-8">
+    <div class="contenue"> 
+        <h1 class="text-center">{{gerant.nom}}</h1>
+
+        <form [formGroup]="gerantModifier" (ngSubmit)="modifierGerant(gerant.id)" >
+            <div class="form-group">
+                <label class="form-label">Changer le nom : </label>
+                <input class="form-control" formControlName="nom" type="text"/>
+                <button class="rose btn btn-outline-secondary">Modifier</button>
+            </div> 
+        </form>
