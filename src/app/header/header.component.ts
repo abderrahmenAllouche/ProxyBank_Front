@@ -18,7 +18,8 @@ export class HeaderComponent implements OnInit {
   public gerant: Gerant= {
     id: 0,
     nom: '',
-    agence_id:0
+    agence_id:0,
+    conseillers: new Array
   }
   public conseiller: Conseiller= {
     id:0,

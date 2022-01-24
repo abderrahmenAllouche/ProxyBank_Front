@@ -1,0 +1,18 @@
+.contenue{
+    margin-top: 150px;
+}
+table{
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 1.4rem;
+}
+tr{
+    border-top: rgb(191, 158, 245);
+    border-bottom: rgb(0, 0, 0);   
+}
+.thead{
+    background: linear-gradient(150deg, rgb(151, 103, 228),rgb(191, 158, 245));
+    border-top: rgb(0, 0, 0);
+}
+.trColor{
+    background: rgb(191, 158, 245, 0.33);
+}

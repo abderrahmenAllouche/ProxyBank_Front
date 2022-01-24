@@ -1,11 +1,16 @@
 import { newArray } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
+
 import { Conseiller } from '../shared/models/conseiller.model';
 import { Gerant } from '../shared/models/gerant.model';
 import { Client } from '../shared/models/client.model';
 import { Utilisateur } from '../shared/models/utilisateur.model';
 import { AuthService } from '../shared/service/auth.service';
 import { StorageService } from '../shared/service/storage.service';
+
+
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-home',
@@ -28,6 +33,7 @@ export class HomeComponent implements OnInit {
     id: 0,
     nom: '',
     agence_id: 0,
+    conseillers: new Array
   };
   utilisateur: Utilisateur = {
     id: 0,
@@ -37,9 +43,11 @@ export class HomeComponent implements OnInit {
     actif: false,
   };
 
+
   constructor(
     private storageService: StorageService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router:Router
   ) {}
   ngOnInit(): void {
     this.utilisateur = this.storageService.getUserFromLocalStorage();
@@ -64,6 +72,7 @@ export class HomeComponent implements OnInit {
     );
   }
 
+
   getGerant() {
     this.authService.getGerant(this.utilisateur.id).subscribe(
       (data) => {
@@ -87,4 +96,8 @@ export class HomeComponent implements OnInit {
         break;
     }
   }
+    redirectionAudit(id : number){
+      console.log(id)
+      this.router.navigate(['/audit',id])
+}
 }

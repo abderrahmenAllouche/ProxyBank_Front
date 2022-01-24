@@ -1,21 +1,21 @@
-import { Client } from './../models/client.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Gerant } from '../models/gerant.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class ClientService {
-  apiUrl = 'http://localhost:8080/ProxyBank/Client';
+export class GerantService {
+  apiUrl = 'http://localhost:8080/ProxyBank/Gerant';
 
   constructor(private _http: HttpClient) {}
 
-  getConseiller() {
-    return this._http.get<Client[]>(this.apiUrl);
+  getGerant() {
+    return this._http.get<Gerant[]>(this.apiUrl);
   }
 
-  supprimerClient(id: number) {
+  supprimerGerant(id: number) {
       console.log(`${this.apiUrl}/${id}`);
     return this._http.delete(`${this.apiUrl}/${id}`);
   }
@@ -24,12 +24,15 @@ export class ClientService {
     return this._http.get(this.apiUrl);
   }
 
-  create(data:Client) : Observable<any>{
-
+  create(data:Gerant) : Observable<any>{
+      
     return this._http.post(this.apiUrl, data);
   }
 
-  modifier(data:Client, id:number) : Observable<any>{
+  modifier(data:Gerant, id:number) : Observable<any>{
     return this._http.put(`${this.apiUrl}/${id}`, data);
   }
+  getById(id: any) {
+    return this._http.get<Gerant>(`${this.apiUrl}/${id}`);
+}
 }

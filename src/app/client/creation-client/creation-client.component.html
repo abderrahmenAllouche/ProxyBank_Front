@@ -1,0 +1,14 @@
+<div class="container col-6">
+  <div class="carte">
+    <h1>Creer un client</h1>
+    <form [formGroup]="client" (ngSubmit)="creerClient()">
+      <div class="form-group">
+        <label class="form-label">Nom : </label>
+        <input class="form-control" formControlName="nom" type="text" />
+        <label class="form-label">Gerant_id : </label>
+        <input class="form-control" formControlName="gerant_id" type="number" />
+        <button class="btn btn-primary" [disabled]="client.invalid" >Creer</button>
+      </div>
+    </form>
+  </div>
+</div>

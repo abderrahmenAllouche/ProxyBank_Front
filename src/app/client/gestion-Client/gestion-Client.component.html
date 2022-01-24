@@ -1,0 +1,58 @@
+<div class="container col-8">
+  <div class="container">
+      <router-outlet></router-outlet>
+  </div>
+  </div>
+
+ <h1>La liste de tout les clients :</h1>
+<table>
+  <thead>
+    <tr>
+      <td>Id</td>
+      <td>Nom</td>
+      <td>Prenom</td>
+      <td>adresse</td>
+      <td>tel</td>
+      <td>solde</td>
+      <td>Clients</td>
+
+      <td>Supprimer un client</td>
+      <td>Modifier un client</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor='let client of clients'>
+      <td>{{client.id}}</td>
+      <td>{{client.nom}}</td>
+      <td>{{client.preNom}}</td>
+      <td>{{client.adresse}}</td>
+
+      <td>{{client.preNom}}</td>
+      <td>{{client.compteCourant.solde}}</td>
+
+      <td>{{client.id}}</td>
+
+      <td><button (click)="supprimerClient(client.id)">Supprimer </button></td>
+      <td>
+        <form [formGroup]="clientModifier" (ngSubmit)="modifierClient(client.id)">
+          <div class="form-group">
+            <label>Nom : </label>
+            <input formControlName="nom" type="text" />
+            <label>Prenom : </label>
+            <input formControlName="preNom" type="text" />
+            <label>Adresse : </label>
+            <input formControlName="adresse" type="text" />
+            <label>num tel : </label>
+            <input formControlName="tel" type="text" />
+
+            <label>solde : </label>
+            <input formControlName="solde" type="text" />
+
+
+      <button [disabled]="clientModifier.invalid">Modifier</button>
+      </div>
+      </form>
+      </td>
+    </tr>
+  </tbody>
+</table>
