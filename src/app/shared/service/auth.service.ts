@@ -1,20 +1,26 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UtilisateurAuth } from '../models/utilisateur-auth';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Utilisateur } from '../models/utilisateur.model';
+import { Conseiller } from '../models/conseiller.model';
+import { Gerant } from '../models/gerant.model';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   url: string;
+  apiUrl: string;
+  adminUrl : string;
   subjectConnexion: Subject<number>;
 
   //currentUser: UtilisateurDto;
 
   constructor(private router: Router, private http: HttpClient) {
     this.url = 'http://localhost:8080/auth/login';
+    this.apiUrl ='http://localhost:8080/ProxyBank/'
+    this.adminUrl = 'http://localhost:8080/admin/user'
     this.subjectConnexion = new Subject<number>();
   }
 
@@ -66,5 +72,32 @@ export class AuthService {
     localStorage.removeItem('access_token');
     localStorage.removeItem('current_user');
     this.router.navigateByUrl('/login');
+  }
+
+  getGerant(id : number){
+    return this.http.get<Gerant>(`${this.apiUrl}gerant/utilisateur/${id}`, {
+      headers: new HttpHeaders({
+        'Access-Control-Allow-Origin': '*',
+        Authorization: 'Bearer ' + localStorage.getItem('access_token'),
+      })
+    });
+  }
+
+  getConseiller(id :number){
+    return this.http.get<Conseiller>(`${this.apiUrl}conseiller/utilisateur/${id}`, {
+      headers: new HttpHeaders({
+        'Access-Control-Allow-Origin': '*',
+        Authorization: 'Bearer ' + localStorage.getItem('access_token'),
+      })
+    });
+  }
+
+  getAll(): Observable<any> {
+    return this.http.get(this.adminUrl, {
+      headers: new HttpHeaders({
+        'Access-Control-Allow-Origin': '*',
+        Authorization: 'Bearer ' + localStorage.getItem('access_token'),
+      })
+    });
   }
 }

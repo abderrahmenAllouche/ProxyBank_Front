@@ -1,46 +1,37 @@
 <div class="container col-8">
-<div class="contenue"> 
+  <div class="contenue">
     <h1>Relations Conseillers/Clients :</h1>
-</div>
-<table class="table table-striped">
-    <thead>
-        <tr  class="thead">
-            <td>Client</td>
-            <td>Conseiller Actuel</td>
-            <td>Conseillers Disponible</td>
+    <table class="table table-striped">
+      <thead>
+        <tr class="thead">
+          <td>Conseiller Actuel</td>
+          <td>Client Nom</td>
+          <td>Conseillers Disponible</td>
         </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor='let conseiller of conseillers' class="trColor">
-            <td >Client nom</td>
-            <td >Conseiller nom {{conseiller.nom}}</td>
-            <td >
-                <div class="btn-group" role="group">
-                    <button id="btnGroupDrop1" type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                      Dropdown
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                      <li><a class="dropdown-item" href="#">Dropdown link</a></li>
-                      <li><a class="dropdown-item" href="#">Dropdown link</a></li>
-                    </ul>
-                </div>
-            </td>
-        </tr>  
-        <tr class="trColor" >
-            <td >test</td>
-            <td >test</td>
-            <td >
-                <div class="btn-group" role="group">
-                    <button id="btnGroupDrop1" type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                      Dropdown
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                      <li><a class="dropdown-item" href="#">Dropdown link</a></li>
-                      <li><a class="dropdown-item" href="#">Dropdown link</a></li>
-                    </ul>
-                </div>
-            </td>
-        </tr> 
-    </tbody>
-</table>
+      </thead>
+      <tbody *ngFor="let conseiller of conseillers">
+        <tr *ngFor="let client of conseiller.clients" class="trColor">
+          <td>{{ conseiller.nom }}</td>
+          <td>{{ client.nom }}</td>
+          <td>
+            <div class="mb-3">
+              <select
+                id="disabledSelect"
+                class="form-select"
+                ngModel
+                (ngModelChange)="changerConseiller($event, client.id)"
+              >
+                <option
+                  *ngFor="let conseillerDispo of conseillersDiponible"
+                  [ngValue]="conseillerDispo"
+                >
+                  {{ conseillerDispo.nom }}
+                </option>
+              </select>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

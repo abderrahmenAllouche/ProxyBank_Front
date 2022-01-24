@@ -14,6 +14,9 @@ import { GestionConseillerClientComponent } from './conseiller/gestion-conseille
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { CreerConseillerComponent } from './conseiller/creer-conseiller/creer-conseiller.component';
+import { AdminGestionConseillerComponent } from './conseiller/admin-gestion-conseiller/admin-gestion-conseiller.component';
+import { NotfoundComponent } from './notfound/notfound.component';
+import { GestionUtilisateurComponent } from './utilisateur/gestion-utilisateur/gestion-utilisateur.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,10 @@ import { CreerConseillerComponent } from './conseiller/creer-conseiller/creer-co
     GestionConseillerClientComponent,
     LoginComponent,
     HomeComponent,
-    CreerConseillerComponent
+    CreerConseillerComponent,
+    AdminGestionConseillerComponent,
+    NotfoundComponent,
+    GestionUtilisateurComponent,
   ],
   imports: [
     BrowserModule,

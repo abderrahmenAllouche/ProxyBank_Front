@@ -11,7 +11,7 @@ tr{
     border-bottom: rgb(0, 0, 0);   
 }
 .thead{
-    background: linear-gradient(150deg, #DD2F6E,#dfa3b9);
+    background: linear-gradient(150deg, #00d0ff,#57cac4);
     border-top: rgb(0, 0, 0);
     color: #fff
 }
@@ -27,6 +27,15 @@ tr{
     border: 1px solid #DD2F6E;
     color: #FFF
 }
-.rouge{
-    color: #DD2F6E;
+.gerer{
+    margin-left: 10px;
+}
+.bleu{
+    border: 1px solid #00d0ff;
+    color: #00d0ff
+}
+.bleu:hover{
+    background: #00d0ff;
+    border: 1px solid #00d0ff;
+    color: #FFF
 }

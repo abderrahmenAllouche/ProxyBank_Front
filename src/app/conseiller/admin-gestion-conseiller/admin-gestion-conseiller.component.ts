@@ -1,34 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { Conseiller } from '../../shared/models/conseiller.model';
-import { ConseillerService } from '../../shared/service/conseiller.service';
-import {
-  FormControl,
-  FormGroup,
-  FormBuilder,
-  Validator,
-  Validators,
-} from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Utilisateur } from 'src/app/shared/models/utilisateur.model';
-import { StorageService } from 'src/app/shared/service/storage.service';
-import { AuthService } from 'src/app/shared/service/auth.service';
-import { Gerant } from 'src/app/shared/models/gerant.model';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Conseiller } from 'src/app/shared/models/conseiller.model';
+import { ConseillerService } from 'src/app/shared/service/conseiller.service';
 
 @Component({
-  selector: 'app-conseiller',
-  templateUrl: './conseiller.component.html',
-  styleUrls: ['./conseiller.component.css'],
+  selector: 'app-admin-gestion-conseiller',
+  templateUrl: './admin-gestion-conseiller.component.html',
+  styleUrls: ['./admin-gestion-conseiller.component.css']
 })
-export class ConseillerComponent implements OnInit {
+export class AdminGestionConseillerComponent implements OnInit {
+
   public conseillers: Array<Conseiller>;
   public conseiller!: FormGroup;
-  private utilisateur!: Utilisateur
-  private gerant!: Gerant;
+  
 
   constructor(
     private conseillerService: ConseillerService,
-    private storageService : StorageService,
-    private authService : AuthService,
     private fb: FormBuilder,
     private router: Router,
     private activatedRoute: ActivatedRoute
@@ -47,20 +35,15 @@ export class ConseillerComponent implements OnInit {
   }
 
   getConseiller() {
-    this.utilisateur = this.storageService.getUserFromLocalStorage();
-    this.authService.getGerant(this.utilisateur.id).subscribe(
+    this.conseillerService.getAll().subscribe(
       (data) => {
-        this.conseillerService.getConseiller(data.id).subscribe(
-          (data) => {
-            this.conseillers = data;
-          },
-          (error) => {
-          }
-        );
+        this.conseillers = data;
       },
       (error) => {
       }
     );
+
+    
   }
 
   supprimerConseiller(id: number) {
@@ -92,8 +75,17 @@ export class ConseillerComponent implements OnInit {
     if (error.response != undefined) {
       alert(error.response);
     }else{
-      alert(error.error.response)
+      alert(error.error)
     } 
+  }
+
+  alertMessageSuppression(id: number){
+    const confirmation = false;
+    alert
+
+    if(confirmation){
+      this.supprimerConseiller(id)
+    }
   }
 
   redirection(id: number){

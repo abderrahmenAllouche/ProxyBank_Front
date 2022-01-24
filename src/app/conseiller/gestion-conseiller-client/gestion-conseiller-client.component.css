@@ -1,5 +1,6 @@
 .contenue{
     margin-top: 150px;
+    margin-bottom: 150px;
 }
 table{
     font-family: Helvetica, Arial, sans-serif;
@@ -16,3 +17,28 @@ tr{
 .trColor{
     background: rgb(191, 158, 245, 0.33);
 }
+.dropdown-item-dark {
+    background-color: rgba(245, 0, 0, 0.2) !important;
+    color: rgb(0, 0, 0) !important;
+  }
+  
+  .dropdown-item-dark:hover {
+    background-color: rgb(255, 0, 0) !important;
+    color: rgb(0, 0, 0) !important;
+  }
+  .list-group-item-dark {
+    background-color: rgb(255, 255, 255, 0.15) !important;
+    color: rgb(255,255,255) !important;
+    border-bottom: none !important;
+  }
+  
+  li a {
+    color: rgb(255,255,255) !important;
+    text-decoration: none !important;
+  }
+  
+  .dropdown-menu-dark {
+    background-color: rgb(255, 255, 255, 0.2) !important;
+    color: rgb(255,255,255) !important;
+  }
+  

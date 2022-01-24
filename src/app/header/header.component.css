@@ -8,20 +8,16 @@
     color: rgb(255,255,255) !important;
     text-decoration: none !important;
   }
+  .navbar .dropdown-menu {
+    background: rgba(0, 0, 0, 0.377) !important;
   
-  .dropdown-menu-dark {
-    background-color: rgb(255, 255, 255, 0.2) !important;
-    color: rgb(255,255,255) !important;
+    color: black!important;
   }
   
-  .dropdown-item-dark {
-    background-color: rgb(255, 255, 255, 0.2) !important;
-    color: rgb(255,255,255) !important;
-  }
   
   .dropdown-item-dark:hover {
-    background-color: rgb(255,255,255) !important;
-    color: rgb(176, 168, 185) !important;
+    background: rgb(36, 36, 36) !important;
+    color: rgb(213, 216, 220) !important;
   }
   .navbar{
     background: linear-gradient(150deg, #DD2F6E,#dfa3b9,rgb(151, 103, 228), #00d0ff,rgb(150, 231, 134), #fffd87,#FC8454) !important;

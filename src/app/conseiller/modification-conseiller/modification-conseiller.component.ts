@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Conseiller } from 'src/app/shared/models/conseiller.model';
+import { Utilisateur } from 'src/app/shared/models/utilisateur.model';
 import { ConseillerService } from 'src/app/shared/service/conseiller.service';
+import { StorageService } from 'src/app/shared/service/storage.service';
 
 @Component({
   selector: 'app-modification-conseiller',
@@ -11,19 +13,27 @@ import { ConseillerService } from 'src/app/shared/service/conseiller.service';
 })
 export class ModificationConseillerComponent implements OnInit {
   public conseillerModifier!: FormGroup;
-  public conseiller!: Conseiller;
+  public conseiller: Conseiller= {
+    id:0,
+    nom: '',
+    clients: new Array,
+    gerant_id: 0
+  };
   public id!: string | null ;
+  private utilisateur! : Utilisateur
+
 
   constructor(
     private conseillerService: ConseillerService,
     private fb: FormBuilder,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private storageService: StorageService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
-    
+    this.utilisateur = this.storageService.getUserFromLocalStorage()
     this.activatedRoute.paramMap.subscribe( (paramMap: ParamMap) =>{
-      console.log(paramMap.get('id'))
       this.id = paramMap.get('id')
     });
 
@@ -40,10 +50,8 @@ export class ModificationConseillerComponent implements OnInit {
     this.conseillerService.getById(id).subscribe(
       (data) => {
         this.conseiller = data;
-        console.log(this.conseiller)
       },
       (error) => {
-        console.log(error);
       }
     );
   }
@@ -52,7 +60,6 @@ export class ModificationConseillerComponent implements OnInit {
     const data = this.conseillerModifier.value;
     this.conseillerService.modifier(data, id).subscribe(
       (response) => {
-        console.log(response)
         this.getConseillerById(id);
         this.afficherMessage(response)
       },
@@ -63,11 +70,19 @@ export class ModificationConseillerComponent implements OnInit {
 }
 
   afficherMessage(error: any) {
-    console.log(error);
     if (error.response != undefined) {
       alert(error.response);
     }else{
       alert(error.error)
     } 
+  }
+
+
+  redirection(){
+  if(this.utilisateur.role=='ADMIN'){
+    this.router.navigate(['/admin/gestion-conseillers'])
+  }else{
+    this.router.navigate(['/conseillers'])
+  }
   }
 }

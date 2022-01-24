@@ -5,9 +5,20 @@
             <div class="form-group">
                 <label class="form-label">Nom : </label>
                 <input class="form-control" formControlName="nom" type="text"/>
-                <label class="form-label">Gerant_id : </label>
-                <input class="form-control"formControlName="gerant_id" type="number"/>
-                <button class="btn btn-primary" [disabled]="conseiller.invalid" >Creer</button>
+                <label *ngIf="roleTab[0]" class="form-label">Gerant_id : </label>
+                <input *ngIf="roleTab[0]" class="form-control"formControlName="gerant_id" type="number"/>
+                
+
+                
+                <form [formGroup]="newUtilisateur">
+                    <label class="form-label" >Username : </label>
+                    <input class="form-control" formControlName="username" type="text"/>
+                    <label class="form-label" >Password : </label>
+                    <input class="form-control" formControlName="password" type="password" placeholder="Mot de passe"/>
+                </form>
+                
+
+                <button class="btn btn-primary"  >Creer</button>
             </div> 
         </form>
     </div>

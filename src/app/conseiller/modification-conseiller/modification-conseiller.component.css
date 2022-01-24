@@ -1,5 +1,6 @@
 .contenue{
     margin-top: 150px;
+    margin-bottom: 150px;
 }
 table{
     font-family: Helvetica, Arial, sans-serif;
@@ -28,7 +29,6 @@ tr{
     color: #FFF
 }
 .bleu{
-    margin-top: 10px;
     border: 1px solid #00d0ff;
     color: #00d0ff
 }
@@ -39,4 +39,13 @@ tr{
 }
 h1{
     color: #DD2F6E;
+}
+.indigo{
+    border: 1px solid rgb(151, 103, 228);
+    color: rgb(151, 103, 228)
+}
+.indigo:hover{
+    background: rgb(151, 103, 228);
+    border: 1px solid rgb(151, 103, 228);
+    color: #FFF
 }

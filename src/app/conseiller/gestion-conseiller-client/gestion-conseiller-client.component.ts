@@ -9,24 +9,57 @@ import { ConseillerService } from 'src/app/shared/service/conseiller.service';
 })
 export class GestionConseillerClientComponent implements OnInit {
   public conseillers!: Array<Conseiller>;
-  
+  public conseillersDiponible! : Array<Conseiller>;
+  public conseillerChoisie!: Conseiller;
+  public value!: any;
   
   constructor(private conseillerService: ConseillerService) { }
 
   ngOnInit(): void {
     this.getConseiller();
+    this.getConseillerDisponible();
   }
 
   getConseiller() {
-    this.conseillerService.getConseiller().subscribe(
-      (data) => {
-        console.log(data)
+    this.conseillerService.getConseiller(1).subscribe(
+      (data : Array<Conseiller>) => {
         this.conseillers = data;
       },
-      (error) => {
-        console.log(error);
+      (error: string) => {
       }
     );
+  }
+
+  getConseillerDisponible(){
+    this.conseillerService.getConseillerDisponible().subscribe(
+      (data) => {
+        this.conseillersDiponible = data;
+      },
+      (error) => {
+      }
+    );
+  }
+
+  changerConseiller(event : any, idClient :number){
+    this.conseillerChoisie = event;
+    this.conseillerService.assignerClient(this.conseillerChoisie.id,idClient ).subscribe(
+      (response) => {
+        this.getConseiller();
+        this.getConseillerDisponible();
+        this.afficherMessage(response)
+      },
+      (error) => {
+      }
+    );
+
+  }
+
+  afficherMessage(error: any) {
+    if (error.response != undefined) {
+      alert(error.response);
+    }else{
+      alert(error.error)
+    } 
   }
 
 

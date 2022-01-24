@@ -29,12 +29,12 @@ export class LoginComponent implements OnInit {
 
   login() {
     if (this.loginForm.valid) {
-      console.log(this.user)
-      window.alert('bienvenue '+this.user.username);
       this.authService.login(this.user).subscribe(res => {
-        console.log(res)
         if (res) {
+          window.alert('bienvenue '+this.user.username);
           this.router.navigateByUrl('/home');
+        }else{
+          alert("l'Username ou le Password est incorrect")
         }
       })
     }
