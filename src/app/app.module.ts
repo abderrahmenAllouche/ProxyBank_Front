@@ -15,8 +15,21 @@ import { GestionConseillerClientComponent } from './conseiller/gestion-conseille
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { CreerConseillerComponent } from './conseiller/creer-conseiller/creer-conseiller.component';
+
 import { ClientService } from './shared/service/client.service';
 import { ConseillerService } from './shared/service/conseiller.service';
+
+import { AgenceComponent} from './agence/gestion-agence/gestion-agence.component'
+import { CreerAgenceComponent } from './agence/creer-agence/creer-agence.component';
+import { ModifierAgenceComponent } from './agence/modifier-agence/modifier-agence.component';
+import { GestionAgenceGerantComponent } from './agence/gestion-agence-gerant/gestion-agence-gerant.component';
+import { AuditComponent } from './agence/audit/audit.component';
+import { CreerGerantComponent } from './gerant/creer-gerant/creer-gerant.component';
+import { GerantComponent } from './gerant/gestion-gerant/gestion-gerant.component';
+import { ModifierGerantComponent } from './gerant/modifier-gerant/modifier-gerant.component';
+import { GestionGerantConseillerComponent } from './gerant/gestion-gerant-conseiller/gestion-gerant-conseiller.component';
+import { AgenceService } from './shared/service/agence.service';
+import { GerantService } from './shared/service/gerant.service';
 
 @NgModule({
   declarations: [
@@ -29,8 +42,19 @@ import { ConseillerService } from './shared/service/conseiller.service';
     LoginComponent,
     HomeComponent,
     CreerConseillerComponent,
+
     CreationClientComponent,
-    GestionClientComponent
+    GestionClientComponent,
+    AgenceComponent,
+    CreerAgenceComponent,
+    ModifierAgenceComponent,
+    GestionAgenceGerantComponent,
+    AuditComponent,
+    CreerGerantComponent,
+    GerantComponent,
+    ModifierGerantComponent,
+    GestionGerantConseillerComponent
+
   ],
   imports: [
     BrowserModule,
@@ -40,7 +64,8 @@ import { ConseillerService } from './shared/service/conseiller.service';
     ReactiveFormsModule,
     AppRoutingModule
   ],
-  providers: [ConseillerService,ClientService],
-   bootstrap: [AppComponent]
+
+  providers: [ConseillerService,AgenceService,GerantService,ClientService],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

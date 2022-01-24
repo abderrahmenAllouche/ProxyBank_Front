@@ -1,0 +1,12 @@
+.btn{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background:rgb(150, 231, 134) ;
+    border: 1px solid rgb(150, 231, 134);
+}
+.carte{
+    margin-top: 200px;
+    border: 2px solid rgb(150, 231, 134);
+    border-radius: 50% 20% / 10% 40%;
+    padding: 3em;;
+}

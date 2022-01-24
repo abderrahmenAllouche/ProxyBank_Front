@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../shared/service/auth.service';
+
+import { Router } from '@angular/router';
+
+import { AuthService } from '../shared/service/auth.service'
 
 @Component({
   selector: 'app-home',
@@ -11,12 +14,16 @@ export class HomeComponent implements OnInit {
   gerant: boolean;
   conseiller: boolean;
 
-  constructor() { 
+
+  constructor(private router:Router) { 
     this.admin=true;
     this.gerant=false;
     this.conseiller=false;
   }
   ngOnInit(): void {
   }
-
+    redirectionAudit(id : number){
+      console.log(id)
+      this.router.navigate(['/audit',id])
+}
 }

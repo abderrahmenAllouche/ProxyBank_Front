@@ -1,0 +1,10 @@
+<h1>Creer un gerant</h1>
+<form [formGroup]="gerant" (ngSubmit)="creerGerant()" >
+    <div class="form-group">
+        <label>Nom : </label>
+        <input formControlName="nom" type="text"/>
+        <label>Agence_id : </label>
+        <input formControlName="agence_id" type="number"/>
+        <button  >Creer</button>
+    </div> 
+</form>
