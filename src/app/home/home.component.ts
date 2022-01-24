@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-<<<<<<< HEAD
+
 import { Router } from '@angular/router';
-=======
-import { AuthService } from '../shared/service/auth.service';
->>>>>>> dc8a2f38fa49947978fb2ff11769486531dfbef6
+
+import { AuthService } from '../shared/service/auth.service'
 
 @Component({
   selector: 'app-home',
