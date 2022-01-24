@@ -63,9 +63,8 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('isConnected');
-    localStorage.removeItem('accessToken');
-    localStorage.removeItem('currentUser');
-    this.subjectConnexion.next(3);
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('current_user');
     this.router.navigateByUrl('/login');
   }
 }
