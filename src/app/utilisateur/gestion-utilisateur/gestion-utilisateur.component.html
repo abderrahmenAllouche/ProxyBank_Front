@@ -1,6 +1,6 @@
 <div class="contenue">
     <div class="container col-6">
-      
+        <div *ngIf="utilisateurs.length==0"><h1>Désolé, vous n'avez aucun conseiller</h1></div>
         <h2>Tout les utilisateurs : <button type="button" class="btn btn-outline-success" >Nouveau Gerant</button><button type="button" class="btn btn-outline-success" [routerLink]="['/conseillers/new']" >Nouveau Conseiller</button></h2>
         <table class="table table-striped">
             <thead>

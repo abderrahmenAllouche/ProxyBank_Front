@@ -74,6 +74,8 @@ export class AdminGestionConseillerComponent implements OnInit {
   afficherMessage(error: any) {
     if (error.response != undefined) {
       alert(error.response);
+    }if(error.error.response != undefined){
+      alert(error.error.response)
     }else{
       alert(error.error)
     } 

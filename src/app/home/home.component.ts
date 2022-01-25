@@ -9,7 +9,7 @@ import { AuthService } from '../shared/service/auth.service';
 import { StorageService } from '../shared/service/storage.service';
 
 
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -47,9 +47,11 @@ export class HomeComponent implements OnInit {
   constructor(
     private storageService: StorageService,
     private authService: AuthService,
-    private router:Router
+    private router:Router,
+    private activatedRoute : ActivatedRoute
   ) {}
   ngOnInit(): void {
+    
     this.utilisateur = this.storageService.getUserFromLocalStorage();
     if (this.utilisateur.actif) {
       this.setView(this.utilisateur.role);
