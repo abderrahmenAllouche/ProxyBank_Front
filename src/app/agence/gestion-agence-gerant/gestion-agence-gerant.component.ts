@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AgenceService } from 'src/app/shared/service/agence.service';
 import { Agence } from 'src/app/shared/models/agence.model';
+import { Gerant } from 'src/app/shared/models/gerant.model';
+import { GerantService } from 'src/app/shared/service/gerant.service';
 
 @Component({
   selector: 'app-gestion-agence-gerant',
@@ -9,11 +11,15 @@ import { Agence } from 'src/app/shared/models/agence.model';
 })
 export class GestionAgenceGerantComponent implements OnInit {
   public agences!: Array<Agence>;
-  
-  constructor(private agenceService: AgenceService) { }
+  public gerants!: Array<Gerant>;
+  public gerantChoisi!: Gerant;
+
+
+  constructor(private agenceService: AgenceService, private gerantService: GerantService) { }
 
   ngOnInit(): void {
     this.getAgence();
+    this.getGerant();
   }
 
   getAgence() {
@@ -26,6 +32,41 @@ export class GestionAgenceGerantComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+  getGerant() {
+    this.gerantService.getGerant().subscribe(
+      (data) => {
+        console.log(data)
+        this.gerants = data;
+
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+  changerGerant(event: any, id_agence: number) {
+    this.gerantChoisi = event;
+    this.gerantService.assignerGerantAgence(this.gerantChoisi.id, id_agence).subscribe(
+      (data) => {
+        console.log(data)
+        this.getAgence();
+        this.getGerant();
+        this.afficherMessage(data);
+
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+
+  }
+  afficherMessage(error: any) {
+    if (error.response != undefined) {
+      alert(error.response);
+    } else {
+      alert(error.error)
+    }
   }
 
 

@@ -1,45 +1,54 @@
-<h1>Creer un agence</h1>
-<form [formGroup]="agence" (ngSubmit)="creerAgence()" >
-    <div class="form-group">
-        <label>Nom : </label>
-        <input formControlName="nom" type="text"/>
-        <button [disabled]="agence.invalid" >Creer</button>
-         </div> 
-</form>
+<div class="container">
+    
+<h1>La liste de toutes les agences:<button type="button"   class="btn btn-outline-success" [routerLink]="['/agences/new']">créer agence</button>
+    <button class="btn btn-outline-secondary" [routerLink]="['/gestion-agences-gerants']">Gérer relation agence gerant</button></h1>
+    <table class="table table-striped">
+        <thead>
+            <tr class="thead">
+                <td scope="col">id
+                </td>
+                <td scope="col">
+                    nom
+                </td>
+                <td scope="col">
+                    dateCreation
+
+                </td>
+                <td scope="col">
+                    numeroIdentification
+                </td>
+                <td scope="col">
+                    gerant
+
+                </td>
+                <td scope="col">Modifier une agence</td>
+                <td scope="col">Supprimer une agence</td>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor='let agence of agences'>
+                <td scope='row'>{{agence.id}}</td>
+                <td>{{agence.nom}}</td>
+               <td >{{agence.dateCreation}}</td>
+               <td>{{agence.numeroIdentification}}</td>
+                <td *ngIf="agence.gerant!=null ;else gerantNull">{{agence.gerant.id}}</td>
+               <ng-template #gerantNull><td>null</td></ng-template>
+                
+                <td>
+                   
+                            <button type="button"  class="btn btn-outline-secondary" (click)=redirection(agence.id)>Modifier</button>
+                        
+                </td>
+                <td><button (click)="supprimerAgence(agence.id)" class="btn btn-outline-danger">Supprimer </button></td>
+
+            </tr>
 
 
 
-<h1>La liste de toutes les agences:</h1>
-<table >
-    <thead>
-        <tr>
-            <td >Id</td>
-            <td >Nom</td>
-            <td>Gerant</td>
-            <td>Supprimer une agence</td>
-            <td>Modifier une agence</td>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor='let agence of agences'>
-            <td >{{agence.id}}</td>
-            <td >{{agence.nom}}</td>
-            <td>{{agence.gerant}}</td>
-            
-            
-            <td><button (click)="supprimerAgence(agence.id)">Supprimer </button></td>
-            <td><form [formGroup]="agenceModifier" (ngSubmit)="modifierAgence(agence.id)" >
-                    <div class="form-group">
-                        <label>Nom : </label>
-                        <input formControlName="nom" type="text"/>
-                        <button>Modifier</button>
-                    </div> 
-                </form>
-            </td>
-           
-        </tr>    
-         
-            
-           
-    </tbody>
-</table>
+        </tbody>
+    </table>
+
+
+
+</div>

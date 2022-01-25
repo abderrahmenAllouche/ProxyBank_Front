@@ -100,6 +100,13 @@ export class ConseillerService {
       })
     });
   }
-
+  assignerConseillerGerant(id_conseiller: number, id_gerant: number) {
+    return this._http.put(`${this.apiUrl}/${id_conseiller}/gerant/${id_gerant}`, null, {
+      headers: new HttpHeaders({
+        'Access-Control-Allow-Origin': '*',
+        Authorization: 'Bearer ' + localStorage.getItem('access_token'),
+      })
+    });
+}
 
 }

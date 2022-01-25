@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Agence } from 'src/app/shared/models/agence.model';
 import { AgenceService } from 'src/app/shared/service/agence.service';
 import {FormGroup,FormBuilder,Validators,} from '@angular/forms';
-import { ActivatedRoute ,ParamMap } from '@angular/router';
-
+import { ActivatedRoute ,ParamMap, Router } from '@angular/router';
+import { GerantService } from 'src/app/shared/service/gerant.service';
+import { Gerant } from 'src/app/shared/models/gerant.model';
+import { getLocaleDateFormat } from '@angular/common';
 
 @Component({
   selector: 'app-modifier-agence',
@@ -18,7 +20,8 @@ export class ModifierAgenceComponent implements OnInit {
   constructor(
     private agenceService:AgenceService,
     private fb: FormBuilder,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
   ) {
   
   }    
@@ -58,6 +61,7 @@ export class ModifierAgenceComponent implements OnInit {
         console.log(response)
         this.getAgenceById(id)
         this.afficherMessage(response)
+        this.redirection();
       },
       (error) => {
         this.afficherMessage(error);
@@ -73,5 +77,9 @@ export class ModifierAgenceComponent implements OnInit {
     } else{
       alert(error.error);
     }
+  }
+  redirection(){
+    this.router.navigate(['/gestion-agences']);
+
   }
 }

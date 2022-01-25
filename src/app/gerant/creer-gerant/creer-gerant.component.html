@@ -1,10 +1,25 @@
-<h1>Creer un gerant</h1>
-<form [formGroup]="gerant" (ngSubmit)="creerGerant()" >
-    <div class="form-group">
-        <label>Nom : </label>
-        <input formControlName="nom" type="text"/>
-        <label>Agence_id : </label>
-        <input formControlName="agence_id" type="number"/>
-        <button  >Creer</button>
-    </div> 
-</form>
+<div class="container col-6">
+    <div class="carte">
+        <h1>Creer un gerant</h1>
+        <form [formGroup]="gerant" (ngSubmit)="creerGerant()" >
+            <div class="form-group">
+                <label class="form-label">Nom : </label>
+                <input class="form-control" formControlName="nom" type="text"/>
+                <label  class="form-label">Agence_id : </label>
+                <input  class="form-control"formControlName="agence_id" type="number"/>
+                
+
+                
+                <form [formGroup]="newUtilisateur">
+                    <label class="form-label" >Username : </label>
+                    <input class="form-control" formControlName="username" type="text"/>
+                    <label class="form-label" >Password : </label>
+                    <input class="form-control" formControlName="password" type="password" placeholder="Mot de passe"/>
+                </form>
+                
+
+                <button class="btn btn-primary"  >Creer</button>
+            </div> 
+        </form>
+    </div>
+</div>

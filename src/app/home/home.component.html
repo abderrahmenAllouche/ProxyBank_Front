@@ -8,8 +8,8 @@
    </div>
    <div class="contenue">
       <button *ngIf="roleTab[0]" [routerLink]="['/admin/gestion-utilisateur']">Gestion des Utilisateur</button>
-      <button *ngIf="roleTab[0]">Gestion des Agences</button>
-      <button *ngIf="roleTab[0]">Gestion des Gerants</button>
+      <button *ngIf="roleTab[0]" [routerLink]= "['/gestion-agences']">Gestion des Agences</button>
+      <button *ngIf="roleTab[0]" [routerLink]= "['/gestion-gerants']">Gestion des Gerants</button>
       <button *ngIf="roleTab[0]" [routerLink]="['/admin/gestion-conseillers']"> Gestion des Conseillers</button>
       <button *ngIf="roleTab[0]">Gestion des Clients</button>
 

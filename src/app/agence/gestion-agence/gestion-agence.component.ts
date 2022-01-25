@@ -8,6 +8,7 @@ import {
   Validator,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-gestion-agence',
@@ -21,7 +22,8 @@ export class AgenceComponent implements OnInit {
   
   constructor(
     private agenceService:AgenceService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router
   ) {
   this.agences = [];
   }    
@@ -107,5 +109,8 @@ export class AgenceComponent implements OnInit {
     } else{
       alert(error.error);
     }
+  }
+  redirection(id : number){
+    this.router.navigate(['/agences',id])
   }
 }
