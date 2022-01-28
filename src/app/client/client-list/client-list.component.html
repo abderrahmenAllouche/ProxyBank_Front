@@ -1,0 +1,30 @@
+<div class="container col-8">
+  <div class="contenue">
+    <h2>Vous avez : {{clients.length}}  clients à charge : <button type="button" class="btn btn-outline-success" (click)="ajouter()">Nouveau</button></h2>
+    <table class="table table-striped">
+      <thead class="thead">
+        <tr>
+          <td>Id</td>
+          <td>Nom</td>
+          <td></td>
+          <td></td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="trColor " *ngFor='let client of clients'>
+          <td>{{client.id}}</td>
+          <td>{{client.nom}}</td>
+          <td><button class="bleu btn btn-outline-danger" (click)="redirectionClient(client.id)">Modifier</button></td>
+         
+          <td>
+            <button class="rouge btn btn-outline-danger">Supprimer</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <button class="btn btn-outline-secondary" (click)="redirection()">
+      Retour
+    </button>
+  </div>
+</div>

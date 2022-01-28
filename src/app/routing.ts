@@ -1,3 +1,4 @@
+import { AjoutCompteEpargneComponent } from './client/ajout-compte-epargne/ajout-compte-epargne.component';
 import { Route, RouterModule } from '@angular/router';
 import { AuditComponent } from './agence/audit/audit.component';
 import { CreerAgenceComponent } from './agence/creer-agence/creer-agence.component';
@@ -19,6 +20,9 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { GestionUtilisateurComponent } from './utilisateur/gestion-utilisateur/gestion-utilisateur.component';
+import { ClientListComponent } from './client/client-list/client-list.component';
+import { ModifierClientComponent } from './client/modifier-client/modifier-client.component';
+import { VirementComponent } from './client/virement/virement.component';
 
 const APP_ROUTE: Route[] = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -31,13 +35,20 @@ const APP_ROUTE: Route[] = [
   { path: 'agences', component: AgenceComponent },
   { path: 'agences/new', component: CreerAgenceComponent },
   { path: 'agences/:id', component: ModifierAgenceComponent },
-  { path: 'gestion-agences', component: GestionAgenceGerantComponent },
+  { path: 'gestion-agences', component: AgenceComponent },
+  { path: 'gestion-agences-gerants', component: GestionAgenceGerantComponent},
   { path: 'gerants', component: GerantComponent },
   { path: 'gerants/new', component: CreerGerantComponent },
   { path: 'gerants/:id', component: ModifierGerantComponent },
-  { path: 'gestion-gerants', component: GestionGerantConseillerComponent },
+  { path: 'gestion-gerants', component: GerantComponent },
+  { path: 'gestion-gerant-conseiller', component: GestionGerantConseillerComponent },
   { path: 'audit/:id', component: AuditComponent },
+  { path: 'client-list', component: ClientListComponent},
   { path: 'client/new', component: CreationClientComponent },
+  { path: 'client', component: GestionClientComponent },
+  { path: 'client/:id', component: ModifierClientComponent },
+  { path: 'virement/:id', component: VirementComponent },
+  { path: 'AjoutCompteEpargne/:id', component: AjoutCompteEpargneComponent },
   {
     path: 'admin/gestion-conseillers',
     component: AdminGestionConseillerComponent,

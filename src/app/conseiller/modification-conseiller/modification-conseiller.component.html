@@ -16,12 +16,8 @@
         <table class="table table-striped">
             <thead class="thead">
                 <tr>
+                    <td>Id</td>
                     <td>Nom</td>
-                    <td>Prenom</td>
-                    <td>Adresse</td>
-                    <td>Téléphone</td>
-                    <td>Carte bancaire</td>
-                    <td>Compte Epagne</td>
                     <td> </td>
                     <td> </td>
                     <td> </td>
@@ -29,24 +25,9 @@
             </thead>
             <tbody>
                 <tr class="trColor" *ngFor='let client of conseiller.clients'>
+                    <td>{{client.id}}</td>
                     <td >{{client.nom}}</td>
-                    <td >Laura</td>
-                    <td >36 rue des fraises</td>
-                    <td >06 07 45 20 25</td>
-                    <td >Visa / Electron</td>
-                    <td >Oui / Non</td>
-                    <td><button class="bleu btn btn-outline-danger">Modifier</button></td>
-                    <td><button class="indigo btn btn-outline-danger" [routerLink]="['/gestion-conseillers']">Changer le conseiller</button></td>
-                    <td><button class="rouge btn btn-outline-danger">Supprimer </button></td>
-                </tr>
-                <tr class="trColor">
-                    <td >HONOREZ</td>
-                    <td >Laura</td>
-                    <td >36 rue des fraises</td>
-                    <td >06 07 45 20 25</td>
-                    <td >Visa / Electron</td>
-                    <td >Oui / Non</td>
-                    <td><button class="bleu btn btn-outline-danger">Modifier</button></td>
+                    <td><button class="bleu btn btn-outline-danger" (click)="redirectionClient(client.id)" >Modifier</button></td>
                     <td><button class="indigo btn btn-outline-danger" [routerLink]="['/gestion-conseillers']">Changer le conseiller</button></td>
                     <td><button class="rouge btn btn-outline-danger">Supprimer </button></td>
                 </tr>   

@@ -49,6 +49,7 @@ export class ModificationConseillerComponent implements OnInit {
   getConseillerById(id : any) {
     this.conseillerService.getById(id).subscribe(
       (data) => {
+        console.log(data.clients)
         this.conseiller = data;
       },
       (error) => {
@@ -84,5 +85,8 @@ export class ModificationConseillerComponent implements OnInit {
   }else{
     this.router.navigate(['/conseillers'])
   }
+  }
+  redirectionClient(id: number) {
+    this.router.navigate(['/client', id]);
   }
 }

@@ -1,47 +1,33 @@
 <div class="container col-8">
-    <div class="contenue"> 
-        <h1>Relations Agences/Gerants :</h1>
-    </div>
-    <table class="table table-striped">
-        <thead>
-            <tr  class="thead">
-                <td>Gerant</td>
-                <td>Agence Actuelle</td>
-                <td>Agences Disponible</td>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor='let agence of agences' class="trColor">
-                <td >Gerant nom</td>
-                <td >Agence nom {{agence.nom}}</td>
-                <td >
-                    <div class="btn-group" role="group">
-                        <button id="btnGroupDrop1" type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                          Dropdown
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                          <li><a class="dropdown-item" href="#">Dropdown link</a></li>
-                          <li><a class="dropdown-item" href="#">Dropdown link</a></li>
-                        </ul>
-                    </div>
-                </td>
-            </tr>  
-            <tr class="trColor" >
-                <td >test</td>
-                <td >test</td>
-                <td >
-                    <div class="btn-group" role="group">
-                        <button id="btnGroupDrop1" type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                          Dropdown
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                          <li><a class="dropdown-item" href="#">Dropdown link</a></li>
-                          <li><a class="dropdown-item" href="#">Dropdown link</a></li>
-                        </ul>
-                    </div>
-                </td>
-            </tr> 
-        </tbody>
-    </table>
-    </div>
-    
+  <div class="contenue">
+    <h1>Relations Agences/Gerants :</h1>
+  </div>
+  <table class="table table-striped">
+    <thead>
+      <tr class="thead">
+        <td>Nom de l'agence</td>
+        <td>Changer de gerant</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let agence of agences" class="trColor">
+        <td>Agence nom {{ agence.nom }}</td>
+        <td>
+          <div class="mb-3">
+            <select
+              id="disabledSelect"
+              class="form-select"
+              ngModel
+              (ngModelChange)="changerGerant($event, agence.id)"
+            >
+              <option *ngFor="let gerant of gerants" [ngValue]="gerant">
+                {{ gerant.nom }}
+              </option>
+            </select>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <button class="btn btn-outline-secondary" [routerLink]= "['/gestion-agences']">Retour</button>
+</div>

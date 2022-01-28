@@ -1,11 +1,11 @@
 <div class="container col-8">
-    <div class="contenue"> 
+    <div class="contenue">
         <h1 class="text-center">{{agence.nom}}</h1>
 
         <form [formGroup]="agenceModifier" (ngSubmit)="modifierAgence(agence.id)" >
             <div class="form-group">
-                <label class="form-label">Changer le nom : </label>
-                <input class="form-control" formControlName="nom" type="text"/>
-                <button class="rose btn btn-outline-secondary">Modifier</button>
-            </div> 
+                <label class="form-label" >Changer le nom : </label>
+                <input class="form-control" formControlName="nom" type="text" />
+                <button class="rose btn btn-outline-secondary" [disabled]="agenceModifier.invalid" >Modifier</button>
+            </div>
         </form>

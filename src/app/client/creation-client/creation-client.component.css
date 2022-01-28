@@ -1,28 +1,13 @@
-.container{
-  margin-top: 100px;
+.btn{
+  margin-top: 20px;
+  margin-left: 50px;
+  margin-bottom: 20px;
+  background:rgb(150, 231, 134) ;
+  border: 1px solid rgb(150, 231, 134);
 }
-table{
-  font-family: Helvetica, Arial, sans-serif;
-  font-size: 1.4rem;
-}
-tr{
-  border-top: rgb(191, 158, 245);
-  border-bottom: rgb(0, 0, 0);
-}
-.thead{
-  background: linear-gradient(150deg, #DD2F6E,#dfa3b9);
-  border-top: rgb(0, 0, 0);
-  color: #fff
-}
-.trColor{
-  background: #e4e4e4;
-}
-.rose{
-  border: 1px solid #DD2F6E;
-  color: #DD2F6E
-}
-.rose:hover{
-  background: #DD2F6E;
-  border: 1px solid #DD2F6E;
-  color: #FFF
+.carte{
+  margin-top: 200px;
+  border: 2px solid rgb(150, 231, 134);
+  border-radius: 50% 20% / 10% 40%;
+  padding: 3em;;
 }

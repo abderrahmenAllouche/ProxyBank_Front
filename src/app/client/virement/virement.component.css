@@ -1,0 +1,46 @@
+.container{
+  margin-top: 150px;
+  margin-bottom: 150px;
+}
+table{
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 1.4rem;
+}
+tr{
+  border-top: rgb(191, 158, 245);
+  border-bottom: rgb(0, 0, 0);
+}
+.thead{
+  background: linear-gradient(150deg, #DD2F6E,#dfa3b9);
+  border-top: rgb(0, 0, 0);
+  color: #fff
+}
+.trColor{
+  background: #e4e4e4;
+}
+.rose{
+  border: 1px solid #DD2F6E;
+  color: #DD2F6E
+}
+.rose:hover{
+  background: #DD2F6E;
+  border: 1px solid #DD2F6E;
+  color: #FFF
+}
+.rouge{
+  color: #DD2F6E;
+}
+
+.alignLeft{
+  display : flex;
+  float: left;
+  flex-direction: row-reverse;
+}
+
+.alignRight{
+  display : flex;
+  float: right;
+  flex-direction: row-reverse;
+}
+
+

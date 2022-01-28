@@ -8,31 +8,49 @@ import {
   Validator,
   Validators,
 } from '@angular/forms';
+import { Utilisateur } from 'src/app/shared/models/utilisateur.model';
+import { AuthService } from 'src/app/shared/service/auth.service';
+import { StorageService } from 'src/app/shared/service/storage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-client',
-  templateUrl: './creation-Client.component.html',
-  styleUrls: ['./creation-Client.component.css'],
+  templateUrl: './creation-client.component.html',
+  styleUrls: ['./creation-client.component.css'],
 })
 export class CreationClientComponent implements OnInit {
   public clients: Array<Client>;
   public client!: FormGroup;
-  public compteCourant! : FormGroup;
-  public clientModifier!: FormGroup;
-  public errorMessage!: string;
-  public errorMessageModifier!: string;
-  public idAModifer!: string;
-  public isModifier!: false;
+  public compteCourant!: FormGroup;
+  public activateButton: boolean = false;
+
+  utilisateur: Utilisateur = {
+    id: 0,
+    username: '',
+    password: '',
+    role: '',
+    actif: false,
+  };
+  roleTab: Array<boolean> = [
+    /* ADMIN 0 */ false,
+    /* GERANT 1 */ false,
+    /*CONSEILLER2*/ false,
+  ];
 
   constructor(
     private clientService: ClientService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private storageService : StorageService,
+    private authService: AuthService,
+    private router : Router
   ) {
     this.clients = [];
   }
 
   ngOnInit(): void {
-    this.getClient();
+    this.utilisateur = this.storageService.getUserFromLocalStorage()
+    this.setView(this.utilisateur.role);
+
     this.client;
     this.compteCourant;
     this.client = this.fb.group({
@@ -40,76 +58,47 @@ export class CreationClientComponent implements OnInit {
       preNom: ['', Validators.required],
       adresse: ['', Validators.required],
       tel: ['', Validators.required],
+      idConseiller: ['', Validators.required],
+      compteCourant: this.fb.group({
+        solde: ['', Validators.required],
 
-      compteCourant:  this.fb.group({
-      solde :['']
 
-    })
-
+      })
     });
-
-    this.clientModifier = this.fb.group({
-      nom: ['', Validators.required],
-      preNom: ['', Validators.required],
-      adrese: ['', Validators.required],
-      tel: ['', Validators.required],
-      });
-  }
-
-  getClient() {
-    this.clientService.getAll().subscribe(
-      (data) => {
-        this.clients = data;
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-
-
-  }
-
-  supprimerClient(id: number) {
-    this.clientService.supprimerClient(id).subscribe(
-      (response) => {
-        console.log(response);
-        this.getClient();
-        this.afficherMessage(response)
-      },
-      (error) => {
-        this.afficherMessage(error);
-      }
-    );
   }
 
   creerClient(): void {
     const data = this.client.value;
-    this.clientService.create(data).subscribe(
-      (response) => {
-        console.log(response)
-        this.getClient()
-        this.afficherMessage(response)
-      },
-      (error) => {
-        this.afficherMessage(error);
-      }
-    );
-  }
+    if(this.utilisateur.role=="CONSEILLER"){
+      this.authService.getConseiller(this.utilisateur.id).subscribe(
+        (conseiller) => {
+          data.idConseiller=conseiller.id;
+          this.clientService.create(data).subscribe(
+            (response) => {
+              console.log(response)
 
-  modifierClient(id: number) {
-    const data = this.clientModifier.value;
-    this.clientService.modifier(data, id).subscribe(
-      (response) => {
-        console.log(response)
-        this.getClient()
-        this.afficherMessage(response)
-      },
-      (error) => {
-        this.afficherMessage(error);
-      }
-    );
+              this.afficherMessage(response)
+              this.redirection()
+            },
+            (error) => {
+              this.afficherMessage(error);
+            }
+          );
+        }
+      )
+    }else{
+      this.clientService.create(data).subscribe(
+        (response) => {
+          console.log(response)
 
-
+          this.afficherMessage(response)
+        },
+        (error) => {
+          this.afficherMessage(error);
+          this.redirectionadmin()
+        }
+      );
+    }
   }
 
   afficherMessage(error: any) {
@@ -117,5 +106,30 @@ export class CreationClientComponent implements OnInit {
     if (error.response != undefined) {
       alert(error.response);
     }
+  }
+
+  setView(role: string) {
+    switch (role) {
+      case 'GERANT':
+        this.roleTab = [false, true,false];
+        break;
+      case 'ADMIN':
+        this.roleTab = [true, false,false];
+        break;
+      case 'CONSEILLER':
+        this.roleTab = [false, false,true];
+        break;
+    }
+  }
+
+  isClicked():boolean{
+    return this.activateButton= true;
+  }
+
+  redirection(){
+    this.router.navigate(['/client-list'])
+  }
+  redirectionadmin(){
+    this.router.navigate(['/client'])
   }
 }

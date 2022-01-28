@@ -1,0 +1,15 @@
+<div class="container col-6">
+  <div class="carte">
+    <h1>Ajout Compte Epargne</h1>
+    <form [formGroup]="compteEpargne" (ngSubmit)="ajoutCompteEpargne()">
+      <div class="form-group">
+        <label class="form-label">Taux renumeration : </label>
+        <input class="form-control" formControlName="taux" type="number" />
+        <label class="form-label">Solde : </label>
+        <input class="form-control" formControlName="solde" type="number" />
+
+        <button class="btn btn-primary" >Creer</button>
+      </div>
+    </form>
+  </div>
+</div>

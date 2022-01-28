@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { GerantService } from 'src/app/shared/service/gerant.service';
 import { Gerant } from 'src/app/shared/models/gerant.model';
+import { Conseiller } from 'src/app/shared/models/conseiller.model';
+import { Cons } from 'rxjs';
+import { ConseillerService } from 'src/app/shared/service/conseiller.service';
 
 @Component({
   selector: 'app-gestion-gerant-conseiller',
@@ -8,18 +11,31 @@ import { Gerant } from 'src/app/shared/models/gerant.model';
   styleUrls: ['./gestion-gerant-conseiller.component.css']
 })
 export class GestionGerantConseillerComponent implements OnInit {
+  public conseillers!: Array<Conseiller>;
   public gerants!: Array<Gerant>;
+  public gerantChoisie!: Gerant;
   
-  constructor(private gerantService: GerantService) { }
+  constructor(private gerantService: GerantService,private conseillerService : ConseillerService ) { }
 
   ngOnInit(): void {
+    this.getConseiller();
     this.getGerant();
   }
 
-  getGerant() {
-    this.gerantService.getGerant().subscribe(
+  getConseiller() {
+    this.conseillerService.getAll().subscribe(
       (data) => {
-        console.log(data)
+        this.conseillers = data;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  getGerant() {
+    this.gerantService.getAll().subscribe(
+      (data) => {
         this.gerants = data;
       },
       (error) => {
@@ -28,5 +44,26 @@ export class GestionGerantConseillerComponent implements OnInit {
     );
   }
 
+  changerGerant(event : any, idConseiller :number){
+    this.gerantChoisie = event;
+    this.gerantService.assignerGerantConseiiler(this.gerantChoisie.id,idConseiller ).subscribe(
+      (response) => {
+        this.getConseiller();
+        this.getGerant();
+        this.afficherMessage(response)
+      },
+      (error) => {
+      }
+    );
+
+  }
+
+  afficherMessage(error: any) {
+    if (error.response != undefined) {
+      alert(error.response);
+    }else{
+      alert(error.error)
+    } 
+  }
 
 }

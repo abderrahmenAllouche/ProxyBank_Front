@@ -25,7 +25,7 @@
         <li class="nav-item m-0 p-0">
           <a
             [ngClass]="titleActive === '/home' ? 'nav-link active' : 'nav-link'"
-            [routerLink]="['/home']"
+            [routerLink]="['/client-list']"
             >Voir mes clients</a
           >
         </li>
@@ -34,7 +34,7 @@
             [ngClass]="
               titleActive === '/clients' ? 'nav-link active' : 'nav-link'
             "
-            [routerLink]="['/clients']"
+            [routerLink]="['/client/new']"
             class="nav-link"
             > Creer un client</a
           >
@@ -55,7 +55,7 @@
             [ngClass]="
               titleActive === '/clients' ? 'nav-link active' : 'nav-link'
             "
-            [routerLink]="['/clients']"
+            [routerLink]="['/404']"
             class="nav-link"
             >Audit</a
           >
@@ -134,7 +134,7 @@
             <li>
               <a
                 class="dropdown-item dropdown-item-dark"
-                [routerLink]="['/gerant/new']"
+                [routerLink]="['/gerants/new']"
                 >Creer un Gerant</a
               >
             </li>
@@ -166,14 +166,14 @@
             <li>
               <a
                 class="dropdown-item dropdown-item-dark"
-                [routerLink]="['/conseiller']"
+                [routerLink]= "['/gestion-agences']"
                 >Voir</a
               >
             </li>
             <li>
               <a
                 class="dropdown-item dropdown-item-dark"
-                [routerLink]="['/clients']"
+                [routerLink]="['/agences/new']"
                 >Creer</a
               >
             </li>
@@ -199,14 +199,14 @@
             <li>
               <a
                 class="dropdown-item dropdown-item-dark"
-                [routerLink]="['/conseiller']"
+                [routerLink]="['/gestion-gerants']"
                 >Voir</a
               >
             </li>
             <li>
               <a
                 class="dropdown-item dropdown-item-dark"
-                [routerLink]="['/clients']"
+                [routerLink]="['/gerants/new']"
                 >Creer</a
               >
             </li>
@@ -265,14 +265,14 @@
             <li>
               <a
                 class="dropdown-item dropdown-item-dark"
-                [routerLink]="['/conseiller']"
+                [routerLink]="['/client']"
                 >Voir</a
               >
             </li>
             <li>
               <a
                 class="dropdown-item dropdown-item-dark"
-                [routerLink]="['/clients']"
+                [routerLink]="['/client/new']"
                 >Creer</a
               >
             </li>

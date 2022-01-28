@@ -8,6 +8,8 @@ import {
   Validator,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
+import { CompteCourant } from 'src/app/shared/models/compteCourant.model';
 
 @Component({
   selector: 'app-client',
@@ -16,57 +18,31 @@ import {
 })
 export class GestionClientComponent implements OnInit {
   public clients: Array<Client>;
-  public gestionClient!: FormGroup;
-  public compteCourant! : FormGroup;
-  public clientModifier!: FormGroup;
+  public client!: Client;
+
   public errorMessage!: string;
   public errorMessageModifier!: string;
   public idAModifer!: string;
   public isModifier!: false;
 
-  constructor(
-    private clientService: ClientService,
-    private fb: FormBuilder
-  ) {
+  constructor(private clientService: ClientService, private router: Router) {
     this.clients = [];
   }
 
   ngOnInit(): void {
     this.getClient();
-    this.gestionClient;
-    this.compteCourant;
-    this.gestionClient = this.fb.group({
-      nom: ['', Validators.required],
-      preNom: ['', Validators.required],
-      adresse: ['', Validators.required],
-      tel: ['', Validators.required],
-
-      compteCourant:  this.fb.group({
-      solde :['']
-
-    })
-
-    });
-
-    this.clientModifier = this.fb.group({
-      nom: ['', Validators.required],
-      preNom: ['', Validators.required],
-      adrese: ['', Validators.required],
-      tel: ['', Validators.required],
-      });
   }
 
   getClient() {
     this.clientService.getAll().subscribe(
       (data) => {
+        console.log(data);
         this.clients = data;
       },
       (error) => {
         console.log(error);
       }
     );
-
-
   }
 
   supprimerClient(id: number) {
@@ -74,42 +50,12 @@ export class GestionClientComponent implements OnInit {
       (response) => {
         console.log(response);
         this.getClient();
-        this.afficherMessage(response)
+        this.afficherMessage(response);
       },
       (error) => {
         this.afficherMessage(error);
       }
     );
-  }
-
-  creerClient(): void {
-    const data = this.gestionClient.value;
-    this.clientService.create(data).subscribe(
-      (response) => {
-        console.log(response)
-        this.getClient()
-        this.afficherMessage(response)
-      },
-      (error) => {
-        this.afficherMessage(error);
-      }
-    );
-  }
-
-  modifierClient(id: number) {
-    const data = this.clientModifier.value;
-    this.clientService.modifier(data, id).subscribe(
-      (response) => {
-        console.log(response)
-        this.getClient()
-        this.afficherMessage(response)
-      },
-      (error) => {
-        this.afficherMessage(error);
-      }
-    );
-
-
   }
 
   afficherMessage(error: any) {
@@ -117,5 +63,13 @@ export class GestionClientComponent implements OnInit {
     if (error.response != undefined) {
       alert(error.response);
     }
+  }
+
+  redirection(id: number) {
+    this.router.navigate(['/client', id]);
+  }
+
+  redirectionVirement(id: number) {
+    this.router.navigate(['/virement', id]);
   }
 }

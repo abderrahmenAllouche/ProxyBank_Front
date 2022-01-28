@@ -1,11 +1,52 @@
 <div class="container col-8">
-    <div class="contenue"> 
-        <h1 class="text-center">{{gerant.nom}}</h1>
+  <div class="contenue">
+    <h1 class="text-center">{{ gerant.nom }}</h1>
 
-        <form [formGroup]="gerantModifier" (ngSubmit)="modifierGerant(gerant.id)" >
-            <div class="form-group">
-                <label class="form-label">Changer le nom : </label>
-                <input class="form-control" formControlName="nom" type="text"/>
-                <button class="rose btn btn-outline-secondary">Modifier</button>
-            </div> 
-        </form>
+    <form [formGroup]="gerantModifier" (ngSubmit)="modifierGerant(gerant.id)">
+      <div class="form-group">
+        <label class="form-label">Changer le nom : </label>
+        <input class="form-control" formControlName="nom" type="text" />
+        <button class="rose btn btn-outline-secondary">Modifier</button>
+      </div>
+    </form>
+
+    <hr />
+
+    <h2>{{ gerant.conseillers.length }} conseillers à charge :</h2>
+    <table class="table table-striped">
+      <thead class="thead">
+        <tr>
+          <td>id</td>
+          <td>Nom</td>
+
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="trColor" *ngFor="let conseiller of gerant.conseillers">
+          <td>{{ conseiller.id }}</td>
+          <td>{{ conseiller.nom }}</td>
+
+          <td><button class="bleu btn btn-outline-danger" (click)=redirectionConseiller(conseiller.id)>Modifier</button></td>
+          <td>
+            <button
+              class="darkbleu btn btn-outline-danger"
+              [routerLink]="['/gestion-gerants']"
+            >
+              Changer le gerant
+            </button>
+          </td>
+          <td>
+            <button class="rouge btn btn-outline-danger" (click)="supprimerConseiller(conseiller.id)">Supprimer</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <button class="btn btn-outline-secondary" (click)="redirection()">
+      Retour
+    </button>
+  </div>
+</div>

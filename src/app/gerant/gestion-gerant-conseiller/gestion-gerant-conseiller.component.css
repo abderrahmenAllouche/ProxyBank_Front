@@ -1,5 +1,6 @@
-.contenue{
+.container{
     margin-top: 150px;
+    margin-bottom: 150px;
 }
 table{
     font-family: Helvetica, Arial, sans-serif;
@@ -10,9 +11,9 @@ tr{
     border-bottom: rgb(0, 0, 0);   
 }
 .thead{
-    background: linear-gradient(150deg, rgb(151, 103, 228),rgb(191, 158, 245));
+    background: linear-gradient(150deg, #0084ff,#5adeb6);
     border-top: rgb(0, 0, 0);
 }
 .trColor{
-    background: rgb(191, 158, 245, 0.33);
+    background: #e4e9e7;
 }

@@ -20,10 +20,10 @@
             <h2>Se Connecter</h2>
             <form [formGroup]="loginForm">
               <div class="inputBox">
-                <input formControlName="username" type="text" placeholder="Nom d'utilisateur" [(ngModel)]="user.username">
+                <input class="noir" formControlName="username" type="text" placeholder="Nom d'utilisateur" [(ngModel)]="user.username">
               </div>
               <div class="inputBox">
-                <input formControlName="password" type="password" placeholder="Mot de passe" [(ngModel)]="user.password">
+                <input  formControlName="password" type="password" placeholder="Mot de passe" [(ngModel)]="user.password">
               </div>
               <div class="inputBox">
                 <input type="submit" value="Se Connecter" (click)="login()">

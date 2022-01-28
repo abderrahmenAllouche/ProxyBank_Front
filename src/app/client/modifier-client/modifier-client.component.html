@@ -1,0 +1,72 @@
+<div class="container col-8">
+  <div class="contenue">
+    <h1 class="vert text-center"><button type="button" class="btn btn-outline-secondary"
+        [routerLink]="['/home']">Retour</button>{{ client.nom }}<button type="button"
+        class="btn btn-outline-success" [routerLink]="['/virement/', client.id]">Virement</button></h1>
+    <table class="table table-striped">
+      <thead class="thead">
+        <tr>
+          <td>Nom</td>
+          <td>Prenom</td>
+          <td>Adresse</td>
+          <td>Téléphone</td>
+          <td>Solde compte courant</td>
+          <td>Autorisation decouvert</td>
+          <td>Solde compte epargne</td>
+          <td>Taux renumeration</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="trColor">
+          <td >{{ client.nom }}</td>
+          <td>{{ client.preNom }}</td>
+          <td>{{ client.adresse }}</td>
+          <td>{{ client.tel }}</td>
+          <td>{{ client.compteCourant.solde }} €</td>
+          <td>{{ client.compteCourant.autorisDecouvert }} €</td>
+          <td *ngIf="client.compteEpargne == null; else compteNull">XXX</td>
+          <ng-template #compteNull>
+            <td>{{ client.compteEpargne.solde }}</td>
+          </ng-template>
+          <td *ngIf="client.compteEpargne == null; else compteNull2">XXX</td>
+          <ng-template #compteNull2>
+            <td>{{ client.compteEpargne.taux }}</td>
+          </ng-template>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="carte">
+      <img class="chip" src="assets/chip.png" />
+      <img class="contactless" src="assets/wifi-signal.png" />
+      <img *ngIf="client.carteElectron==null" class="visa" src="assets/visa.jpg" />
+      <img *ngIf="client.carteVisa==null" class="visa" src="assets/electron.jpg" />
+      <p *ngIf="client.carteElectron==null" class="card-number">{{client.carteVisa.numCarte}}</p>
+      <p *ngIf="client.carteVisa==null" class="card-number">{{client.carteElectron.numCarte}}</p>
+      <p class="card-name">{{client.nom}} {{client.preNom}}</p>
+      <p class="card-expire">Expire 05/23</p>
+      <p class="bank-name">ProxyBank AHL</p>
+    </div>
+    <h1 class="orange text-center">Modifier le client :</h1>
+
+
+    <hr />
+
+    <form [formGroup]="modifierClient" (ngSubmit)="modifierClientById(client.id)">
+      <div class="form-group">
+        <label class="form-label">Changer le nom : </label>
+        <input class="form-control" formControlName="nom" type="text" />
+        <label class="form-label">Changer le prenom : </label>
+        <input class="form-control" formControlName="preNom" type="text" />
+        <label class="form-label">Changer le adresse : </label>
+        <input class="form-control" formControlName="adresse" type="text" />
+        <label class="form-label">Changer le numéro de téléphone : </label>
+        <input class="form-control" formControlName="tel" type="number" />
+
+        <button class="rose btn btn-outline-secondary" [disabled]="modifierClient.invalid">Modifier</button>
+        <button class="rose btn btn-outline-secondary" [disabled]="hasCompteEpargne" (click)="redirectionAjoutCompteEpargne() ">Ajouter Compte Epargne</button>
+
+      </div>
+    </form>
+  </div>
+</div>

@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Conseiller } from 'src/app/shared/models/conseiller.model';
+import { Utilisateur } from 'src/app/shared/models/utilisateur.model';
 import { ConseillerService } from 'src/app/shared/service/conseiller.service';
+import { StorageService } from 'src/app/shared/service/storage.service';
 
 @Component({
   selector: 'app-admin-gestion-conseiller',
@@ -13,13 +15,24 @@ export class AdminGestionConseillerComponent implements OnInit {
 
   public conseillers: Array<Conseiller>;
   public conseiller!: FormGroup;
-  
+  public adminUserActif:boolean=true;
+
+  utilisateur: Utilisateur = {
+    id: 0,
+    username: '',
+    password: '',
+    role: '',
+    actif: false,
+  };
+
 
   constructor(
     private conseillerService: ConseillerService,
     private fb: FormBuilder,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private storageService : StorageService,
+
   ) {
     this.conseillers = [];
   }
@@ -31,7 +44,16 @@ export class AdminGestionConseillerComponent implements OnInit {
       gerant_id: ['', Validators.required],
     });
 
-    
+    this.utilisateur = this.storageService.getUserFromLocalStorage()
+
+    if(this.utilisateur.role=="ADMIN"){
+      this.adminUserActif=false;
+    }
+
+
+  }
+  getConseillerDisponible(id: any) {
+    throw new Error('Method not implemented.');
   }
 
   getConseiller() {
@@ -43,7 +65,7 @@ export class AdminGestionConseillerComponent implements OnInit {
       }
     );
 
-    
+
   }
 
   supprimerConseiller(id: number) {
@@ -78,7 +100,7 @@ export class AdminGestionConseillerComponent implements OnInit {
       alert(error.error.response)
     }else{
       alert(error.error)
-    } 
+    }
   }
 
   alertMessageSuppression(id: number){
@@ -96,5 +118,8 @@ export class AdminGestionConseillerComponent implements OnInit {
 
   ajouter(){
     this.router.navigate(['/conseillers/new'])
+  }
+  redirectionClient(id: number) {
+    this.router.navigate(['/client', id]);
   }
 }

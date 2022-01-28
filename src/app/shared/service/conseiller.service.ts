@@ -55,8 +55,7 @@ export class ConseillerService {
     });
   }
 
-  getConseillerDisponible() {
-    let id = 1;
+  getConseillerDisponible(id: any) {
     return this._http.get<Conseiller[]>(`${this.disponileUrl}/${id}`, {
       headers: new HttpHeaders({
         'Access-Control-Allow-Origin': '*',

@@ -2,6 +2,9 @@
     margin-top: 150px;
     margin-bottom: 150px;
 }
+.btn{
+    margin-left: 10px;
+}
 table{
     font-family: Helvetica, Arial, sans-serif;
     font-size: 1.4rem;
@@ -11,22 +14,19 @@ tr{
     border-bottom: rgb(0, 0, 0);   
 }
 .thead{
-    background: linear-gradient(150deg, #DD2F6E,#dfa3b9);
+    background: linear-gradient(150deg, #dfa3b9,rgb(191, 158, 245));
     border-top: rgb(0, 0, 0);
     color: #fff
 }
 .trColor{
-    background: #e4e4e4;
+    background: #eeeded;
 }
 .rose{
-    border: 1px solid #DD2F6E;
-    color: #DD2F6E
+    border: 1px solid rgb(191, 158, 245);
+    color: rgb(191, 158, 245)
 }
 .rose:hover{
-    background: #DD2F6E;
-    border: 1px solid #DD2F6E;
+    background: rgb(191, 158, 245);
+    border: 1px solid rgb(191, 158, 245);
     color: #FFF
-}
-.rouge{
-    color: #DD2F6E;
 }

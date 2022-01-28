@@ -1,5 +1,6 @@
 .contenue{
     margin-top: 150px;
+    margin-bottom: 150px;
 }
 table{
     font-family: Helvetica, Arial, sans-serif;
@@ -19,16 +20,15 @@ tr{
 }
 .rose{
     margin-top: 10px;
-    border: 1px solid #DD2F6E;
-    color: #DD2F6E
+    border: 1px solid #0084ff;
+    color: #0084ff
 }
 .rose:hover{
-    background: #DD2F6E;
-    border: 1px solid #DD2F6E;
+    background: #0084ff;
+    border: 1px solid #0084ff;
     color: #FFF
 }
 .bleu{
-    margin-top: 10px;
     border: 1px solid #00d0ff;
     color: #00d0ff
 }
@@ -37,6 +37,15 @@ tr{
     border: 1px solid #00d0ff;
     color: #FFF
 }
+.darkbleu{
+    border: 1px solid #0084ff;
+    color: #0084ff
+}
+.darkbleu:hover{
+    background: #0084ff;
+    border: 1px solid #0084ff;
+    color: #FFF
+}
 h1{
-    color: #DD2F6E;
+    color: #0084ff;
 }

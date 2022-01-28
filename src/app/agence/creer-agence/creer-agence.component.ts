@@ -42,6 +42,7 @@ export class CreerAgenceComponent implements OnInit {
         console.log(response)
         this.getAgence()
         this.afficherMessage(response)
+        this.redirection()
       },
       (error) => {
         this.afficherMessage(error);
@@ -67,7 +68,7 @@ export class CreerAgenceComponent implements OnInit {
       if (error.response != undefined) {
         alert(error.response);
       }else{
-        alert(error.error)
+        alert(error.error);
       } 
     }
   

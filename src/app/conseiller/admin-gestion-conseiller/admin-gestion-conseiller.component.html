@@ -1,8 +1,8 @@
-<div class="container col-8">  
+<div class="container col-8">
 <h1>La liste de tout les conseillers :</h1>
-<h2>Total : {{conseillers.length}} conseillers 
+<h2>Total : {{conseillers.length}} conseillers
     <button type="button" class="btn btn-outline-success" (click)="ajouter()">Nouveau</button>
-    <button type="button" class="bleu gerer btn btn-outline-success" >Gerer relation conseillers/gerant</button>
+    <button type="button" class="bleu gerer btn btn-outline-success" [disabled]="adminUserActif" [routerLink]="['/gestion-gerant-conseiller']" >Gerer relation conseillers/gerant</button>
     <button type="button" class="bleu gerer btn btn-outline-success" >Gerer relation conseillers/client</button>
 </h2>
 <table class="table table-striped">
@@ -22,6 +22,7 @@
             <td scope="row">{{conseiller.nom}}</td>
             <td >
                 <ul>
+                    <li *ngIf="conseiller.clients.length==10" style="color:#5adeb6;">{{conseiller.clients.length}} </li>
                     <li>{{conseiller.clients.length}} </li>
                 </ul>
             </td>
@@ -30,17 +31,7 @@
                 <button type="button" class="rose btn btn-outline-secondary" (click)=redirection(conseiller.id)>Gerer</button>
             </td>
             <td><button type="button"class="btn btn-outline-danger" (click)="supprimerConseiller(conseiller.id)">Supprimer </button></td>
-        </tr> 
-        <tr  class="trColor" >
-            <td scope="row">conseillerId</td>
-            <td >Nom du conseiller</td>
-            <td >Nombres de clients à sa charge</td>
-            <td >gerant_id </td>
-            <td>
-                <button class="rose btn btn-outline-secondary" >Gerer</button>
-            </td>
-            <td><button class="btn btn-outline-danger" >Supprimer </button></td>
-        </tr>   
+        </tr>
     </tbody>
 </table>
 </div>
@@ -51,6 +42,6 @@
 
 
 
-                                   
+
 
 

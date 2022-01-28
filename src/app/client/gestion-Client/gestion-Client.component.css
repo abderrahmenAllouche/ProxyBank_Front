@@ -1,5 +1,6 @@
 .container{
-  margin-top: 100px;
+  margin-top: 150px;
+  margin-bottom: 150px;
 }
 table{
   font-family: Helvetica, Arial, sans-serif;
@@ -10,7 +11,7 @@ tr{
   border-bottom: rgb(0, 0, 0);
 }
 .thead{
-  background: linear-gradient(150deg, #DD2F6E,#dfa3b9);
+  background: linear-gradient(150deg, rgb(150, 231, 134), #dddb76, #FC8454);
   border-top: rgb(0, 0, 0);
   color: #fff
 }
@@ -25,4 +26,7 @@ tr{
   background: #DD2F6E;
   border: 1px solid #DD2F6E;
   color: #FFF
+}
+.rouge{
+  color: #DD2F6E;
 }

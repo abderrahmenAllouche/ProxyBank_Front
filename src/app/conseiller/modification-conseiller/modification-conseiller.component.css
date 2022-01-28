@@ -20,12 +20,12 @@ tr{
 }
 .rose{
     margin-top: 10px;
-    border: 1px solid #DD2F6E;
-    color: #DD2F6E
+    border: 1px solid #5adeb6;
+    color: #5adeb6
 }
 .rose:hover{
-    background: #DD2F6E;
-    border: 1px solid #DD2F6E;
+    background: #5adeb6;
+    border: 1px solid #5adeb6;
     color: #FFF
 }
 .bleu{
@@ -38,7 +38,7 @@ tr{
     color: #FFF
 }
 h1{
-    color: #DD2F6E;
+    color: #5adeb6;
 }
 .indigo{
     border: 1px solid rgb(151, 103, 228);

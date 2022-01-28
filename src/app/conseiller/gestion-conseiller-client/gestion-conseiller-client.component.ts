@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Conseiller } from 'src/app/shared/models/conseiller.model';
+import { Utilisateur } from 'src/app/shared/models/utilisateur.model';
+import { AuthService } from 'src/app/shared/service/auth.service';
 import { ConseillerService } from 'src/app/shared/service/conseiller.service';
+import { StorageService } from 'src/app/shared/service/storage.service';
 
 @Component({
   selector: 'app-gestion-conseiller-client',
@@ -12,26 +15,46 @@ export class GestionConseillerClientComponent implements OnInit {
   public conseillersDiponible! : Array<Conseiller>;
   public conseillerChoisie!: Conseiller;
   public value!: any;
-  
-  constructor(private conseillerService: ConseillerService) { }
+
+
+
+  utilisateur: Utilisateur = {
+    id: 0,
+    username: '',
+    password: '',
+    role: '',
+    actif: false,
+  };
+
+  constructor(private conseillerService: ConseillerService, private storageService : StorageService,
+    private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.getConseiller();
-    this.getConseillerDisponible();
+    this.utilisateur = this.storageService.getUserFromLocalStorage()
+
+  if(this.utilisateur.role=="GERANT"){
+    this.getConseiller(this.utilisateur.id);
+
+      this.getConseillerDisponible(this.utilisateur.id);
+      console.log(this.conseillers);
   }
 
-  getConseiller() {
-    this.conseillerService.getConseiller(1).subscribe(
+
+  }
+
+  getConseiller(id: any) {
+    this.conseillerService.getConseiller(id).subscribe(
       (data : Array<Conseiller>) => {
         this.conseillers = data;
+
       },
       (error: string) => {
       }
     );
   }
 
-  getConseillerDisponible(){
-    this.conseillerService.getConseillerDisponible().subscribe(
+  getConseillerDisponible(id: any){
+    this.conseillerService.getConseillerDisponible(id).subscribe(
       (data) => {
         this.conseillersDiponible = data;
       },
@@ -44,8 +67,8 @@ export class GestionConseillerClientComponent implements OnInit {
     this.conseillerChoisie = event;
     this.conseillerService.assignerClient(this.conseillerChoisie.id,idClient ).subscribe(
       (response) => {
-        this.getConseiller();
-        this.getConseillerDisponible();
+        this.getConseiller(this.utilisateur.id);
+        this.getConseillerDisponible(this.utilisateur.id);
         this.afficherMessage(response)
       },
       (error) => {
@@ -59,7 +82,7 @@ export class GestionConseillerClientComponent implements OnInit {
       alert(error.response);
     }else{
       alert(error.error)
-    } 
+    }
   }
 
 

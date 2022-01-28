@@ -1,19 +1,21 @@
 <div class="contenue">
     <div class="container col-6">
-        <div *ngIf="utilisateurs.length==0"><h1>Désolé, vous n'avez aucun conseiller</h1></div>
-        <h2>Tout les utilisateurs : <button type="button" class="btn btn-outline-success" >Nouveau Gerant</button><button type="button" class="btn btn-outline-success" [routerLink]="['/conseillers/new']" >Nouveau Conseiller</button></h2>
+        <h2>Tout les utilisateurs : <button type="button" class="btn btn-outline-success"[routerLink]="['/gerants/new']"  >Nouveau Gerant</button><button type="button" class="btn btn-outline-success" [routerLink]="['/conseillers/new']" >Nouveau Conseiller</button></h2>
         <table class="table table-striped">
             <thead>
                 <tr class="thead">
                     <td scope="col">USERNAME</td>
                     <td scope="col">ROLE</td>
                     <td scope="col">ACTIF</td>
+                    <td></td>
                 </tr>
             </thead>
             <tbody>
                 <tr  class="trColor" *ngFor='let utilisateur of utilisateurs'>
                     <td scope="row">{{utilisateur.username}}</td>
-                    <td >{{utilisateur.role.nom}}</td>
+                    <td *ngIf="utilisateur.role.nom=='ADMIN' " class="rose">{{utilisateur.role.nom}}</td>
+                    <td *ngIf="utilisateur.role.nom=='GERANT'" style="color: #0084ff;">{{utilisateur.role.nom}}</td>
+                    <td *ngIf="utilisateur.role.nom=='CONSEILLER'" style="color: rgb(114, 201, 97);">{{utilisateur.role.nom}}</td>
                     <td >{{utilisateur.actif}}</td>
                     <td *ngIf="utilisateur.actif; else activer"><button type="button"class="btn btn-outline-danger" >Désactiver le compte </button></td>
                     <ng-template #activer> <button type="button"class="btn btn-outline-success" >Activer le compte </button></ng-template>

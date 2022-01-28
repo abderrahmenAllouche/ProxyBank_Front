@@ -33,6 +33,10 @@ import { ModifierGerantComponent } from './gerant/modifier-gerant/modifier-geran
 import { GestionGerantConseillerComponent } from './gerant/gestion-gerant-conseiller/gestion-gerant-conseiller.component';
 import { AgenceService } from './shared/service/agence.service';
 import { GerantService } from './shared/service/gerant.service';
+import { ClientListComponent } from './client/client-list/client-list.component';
+import { ModifierClientComponent } from './client/modifier-client/modifier-client.component';
+import { VirementComponent } from './client/virement/virement.component';
+import { AjoutCompteEpargneComponent } from './client/ajout-compte-epargne/ajout-compte-epargne.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +62,11 @@ import { GerantService } from './shared/service/gerant.service';
     CreerGerantComponent,
     GerantComponent,
     ModifierGerantComponent,
-    GestionGerantConseillerComponent
+    GestionGerantConseillerComponent,
+    ClientListComponent,
+    ModifierClientComponent,
+    VirementComponent,
+    AjoutCompteEpargneComponent
 
   ],
   imports: [

@@ -1,24 +1,24 @@
 <div class="container-fluid">
    <div class="gradient">
       <h1 class="text-center" *ngIf="roleTab[0] ">Bienvenue dans l'interface Administrateur</h1>
-   <h1 class="text-center" *ngIf="roleTab[1] || roleTab[2]">Agence</h1>
+   <h1 class="text-center" *ngIf="roleTab[1] || roleTab[2]">{{agence.nom}}</h1>
    <h3 class="text-center" *ngIf="roleTab[1]">Bienvenue : {{gerant.nom}}</h3>
    <h3 class="text-center" *ngIf="roleTab[2]">Bienvenue : {{conseiller.nom}}</h3>
    <hr>
    </div>
    <div class="contenue">
       <button *ngIf="roleTab[0]" [routerLink]="['/admin/gestion-utilisateur']">Gestion des Utilisateur</button>
-      <button *ngIf="roleTab[0]">Gestion des Agences</button>
-      <button *ngIf="roleTab[0]">Gestion des Gerants</button>
+      <button *ngIf="roleTab[0]" [routerLink]= "['/gestion-agences']">Gestion des Agences</button>
+      <button *ngIf="roleTab[0]" [routerLink]= "['/gestion-gerants']">Gestion des Gerants</button>
       <button *ngIf="roleTab[0]" [routerLink]="['/admin/gestion-conseillers']"> Gestion des Conseillers</button>
-      <button *ngIf="roleTab[0]">Gestion des Clients</button>
+      <button *ngIf="roleTab[0]" [routerLink]="['/client']">Gestion des Clients</button>
 
       <button *ngIf="roleTab[1]" (click)=redirectionAudit(9) type="button">Réaliser un Audit</button>
       <button *ngIf="roleTab[1]" [routerLink]="['/conseillers']">Gestion des conseillers</button>
       <button *ngIf="roleTab[1]" [routerLink]="['/gestion-conseillers']">Gestion relations entre conseillers/clients</button> 
 
 
-      <button *ngIf="roleTab[2]">Gerer mes clients</button>
+      <button *ngIf="roleTab[2]" [routerLink]="['/client-list']">Gerer mes clients</button>
 
    </div>
 </div>

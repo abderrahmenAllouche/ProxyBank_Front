@@ -103,4 +103,7 @@ export class ConseillerComponent implements OnInit {
   ajouter(){
     this.router.navigate(['/conseillers/new'])
   }
+  redirectionClient(id: number) {
+    this.router.navigate(['/client', id]);
+  }
 }

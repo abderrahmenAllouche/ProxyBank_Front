@@ -8,6 +8,7 @@ import {
   Validator,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-gestion-agence',
@@ -18,51 +19,43 @@ export class AgenceComponent implements OnInit {
   public agences!: Array<Agence>;
   public agence!: FormGroup;
   public agenceModifier!: FormGroup;
-  
+
   constructor(
-    private agenceService:AgenceService,
-    private fb: FormBuilder
+    private agenceService: AgenceService,
+    private fb: FormBuilder,
+    private router: Router
   ) {
-  this.agences = [];
-  }    
-  
+    this.agences = [];
+  }
 
   ngOnInit(): void {
     this.getAgence();
-    this.agence= this.fb.group({
+    this.agence = this.fb.group({
       nom: ['', Validators.required],
-      
     });
 
     this.agenceModifier = this.fb.group({
       nom: ['', Validators.required],
-    
     });
   }
 
   getAgence() {
     this.agenceService.getAll().subscribe(
       (data) => {
-       
-        console.log(data);
         this.agences = data;
       },
       (error) => {
         console.log(error);
       }
     );
-
-    
   }
 
   supprimerAgence(id: number) {
-   
     this.agenceService.supprimerAgence(id).subscribe(
-
       (response) => {
-       console.log(response);
+        console.log(response);
         this.getAgence();
-        this.afficherMessage(response)
+        this.afficherMessage(response);
       },
       (error) => {
         this.afficherMessage(error);
@@ -74,9 +67,9 @@ export class AgenceComponent implements OnInit {
     const data = this.agence.value;
     this.agenceService.create(data).subscribe(
       (response) => {
-        console.log(response)
-        this.getAgence()
-        this.afficherMessage(response)
+        console.log(response);
+        this.getAgence();
+        this.afficherMessage(response);
       },
       (error) => {
         this.afficherMessage(error);
@@ -88,24 +81,25 @@ export class AgenceComponent implements OnInit {
     const data = this.agenceModifier.value;
     this.agenceService.modifier(data, id).subscribe(
       (response) => {
-        console.log(response)
-        this.getAgence()
-        this.afficherMessage(response)
+        console.log(response);
+        this.getAgence();
+        this.afficherMessage(response);
       },
       (error) => {
         this.afficherMessage(error);
       }
     );
-    
-    
   }
 
   afficherMessage(error: any) {
     console.log(error);
     if (error.response != undefined) {
       alert(error.response);
-    } else{
+    } else {
       alert(error.error);
     }
+  }
+  redirection(id: number) {
+    this.router.navigate(['/agences', id]);
   }
 }

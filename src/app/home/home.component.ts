@@ -10,6 +10,9 @@ import { StorageService } from '../shared/service/storage.service';
 
 
 import { ActivatedRoute, Router } from '@angular/router';
+import { Agence } from '../shared/models/agence.model';
+import { AgenceService } from '../shared/service/agence.service';
+import { GerantService } from '../shared/service/gerant.service';
 
 
 @Component({
@@ -32,7 +35,7 @@ export class HomeComponent implements OnInit {
   public gerant: Gerant = {
     id: 0,
     nom: '',
-    agence_id: 0,
+    idAgence: 0,
     conseillers: new Array
   };
   utilisateur: Utilisateur = {
@@ -42,13 +45,16 @@ export class HomeComponent implements OnInit {
     role: '',
     actif: false,
   };
+  agence!: Agence
 
 
   constructor(
     private storageService: StorageService,
     private authService: AuthService,
     private router:Router,
-    private activatedRoute : ActivatedRoute
+    private activatedRoute : ActivatedRoute,
+    private agenceService : AgenceService,
+    private gerantService : GerantService
   ) {}
   ngOnInit(): void {
     
@@ -68,6 +74,15 @@ export class HomeComponent implements OnInit {
     this.authService.getConseiller(this.utilisateur.id).subscribe(
       (data) => {
         this.conseiller = data;
+        this.gerantService.getById(data.gerant_id).subscribe(
+          (data2) => {
+            this.agenceService.getById(data2.idAgence).subscribe(
+              (data3) => {
+                this.agence = data3;
+              }
+            )
+          }
+        )
       },
       (error) => {
       }
@@ -79,6 +94,13 @@ export class HomeComponent implements OnInit {
     this.authService.getGerant(this.utilisateur.id).subscribe(
       (data) => {
         this.gerant = data;
+        this.agenceService.getById(data.idAgence).subscribe(
+          (data2) => {
+            this.agence = data2;
+          },
+          (error) => {
+          }
+        );
       },
       (error) => {
       }
