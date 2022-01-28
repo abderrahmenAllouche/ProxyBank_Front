@@ -34,9 +34,7 @@ export class GestionConseillerClientComponent implements OnInit {
 
   if(this.utilisateur.role=="GERANT"){
     this.getConseiller(this.utilisateur.id);
-
       this.getConseillerDisponible(this.utilisateur.id);
-      console.log(this.conseillers);
   }
 
 
@@ -46,7 +44,6 @@ export class GestionConseillerClientComponent implements OnInit {
     this.conseillerService.getConseiller(id).subscribe(
       (data : Array<Conseiller>) => {
         this.conseillers = data;
-
       },
       (error: string) => {
       }
